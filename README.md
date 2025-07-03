@@ -1,3 +1,4 @@
+# Considerações iniciais
 - Dicas Importantes:
 
     - Procure compreender como funciona o sistema que você irá implementar
