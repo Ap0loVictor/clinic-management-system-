@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.MedicoController">
+   <children>
+      <HBox layoutX="29.0" layoutY="14.0" prefHeight="65.0" prefWidth="518.0">
+         <children>
+            <Label prefHeight="50.0" prefWidth="199.0" text="Seja Bem-vindo, Dr.">
+               <padding>
+                  <Insets left="30.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelNomeTitle" prefHeight="30.0" prefWidth="91.0">
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="57.0" layoutY="95.0" text="Nome :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="316.0" layoutY="95.0" text="Especialidade :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="135.0" text="Plano(s) de Saúde : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNome" layoutX="121.0" layoutY="95.0" text="">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelEspecialidade" layoutX="444.0" layoutY="95.0" text="">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPlanoSaude" layoutX="206.0" layoutY="135.0" text="">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableConsultasMarcadas" layoutX="3.0" layoutY="217.0" prefHeight="176.0" prefWidth="594.0">
+        <columns>
+          <TableColumn fx:id="columnPaciente" prefWidth="193.60003662109375" text="Paciente" />
+          <TableColumn fx:id="columData" prefWidth="87.20001220703125" text="Data" />
+            <TableColumn fx:id="columnHorario" prefWidth="71.199951171875" text="Horário" />
+            <TableColumn fx:id="columnStatus" prefWidth="97.5999755859375" text="Status" />
+            <TableColumn fx:id="columnVerDescricao" prefWidth="142.39999999999998" text="Ver Descrição" />
+        </columns>
+      </TableView>
+      <Label layoutX="154.0" layoutY="186.0" prefHeight="27.0" prefWidth="323.0" text="Tabela de Consultas Marcadas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonAtendido" layoutX="69.0" layoutY="402.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Atendido" />
+      <Button fx:id="buttonSair" layoutX="154.0" layoutY="402.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Sair" />
+   </children>
+</AnchorPane>
