@@ -7,10 +7,15 @@ import clinicamed.model.Paciente;
 import clinicamed.userfactory.MedicoFactory;
 import clinicamed.userfactory.PacienteFactory;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,27 +62,81 @@ public class CadastroController implements Initializable {
         String nome = nomeUser.getText();
         String senha = senhaUser.getText();
         if(radioPaciente.isSelected()) {
-            criarPaciente(nome, senha);
+            Paciente paciente = criarPaciente(nome, senha);
             labelCadastrado.setText("Paciente cadastrado com sucesso!");
-            loginController.abrirTelaUsuario("Paciente");
+            loginController.abrirTelaPaciente(paciente);
         } else if (radioMedico.isSelected()) {
-            criarMedico(nome, senha);
+            Medico medico = criarMedico(nome, senha);
             labelCadastrado.setText("Médico cadastrado com sucesso!");
-            loginController.abrirTelaUsuario("Médico");
+            loginController.abrirTelaMedico(medico);
         } else {
             labelCadastrado.setText("Selecione um tipo de usuário para cadastrar");
         }
     }
-    public void criarPaciente(String nome, String senha) {
+    public Paciente criarPaciente(String nome, String senha) {
         int idade = Integer.parseInt(idadeUser.getText());
         boolean temPlano = pacienteTemPlano.isSelected();
         Paciente paciente = PacienteFactory.criarFromController(nome, senha, idade, temPlano);
         PacienteDao.salvarPaciente(paciente);
+        return paciente;
     }
-    public void criarMedico(String nome, String senha) {
+    public Medico criarMedico(String nome, String senha) {
             String especialidade = especialidadeMedico.getText();
             String planoSaude = planoSaudeMedico.getText();
             Medico medico = MedicoFactory.criarFromController(nome, senha, especialidade, planoSaude);
             MedicoDao.salvarMedico(medico);
+            return medico;
     }
+    public void abrirTelaPaciente(Paciente paciente) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
+            Parent root = loader.load();
+
+            PacienteController controller = loader.getController();
+            controller.setPaciente(paciente);
+
+            Stage stage = new Stage();
+            stage.setTitle("Área do Paciente");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            fecharJanelaAtual();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlertaErro("Erro ao abrir tela do paciente", "Tente novamente.");
+        }
+    }
+
+    public void abrirTelaMedico(Medico medico) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
+            Parent root = loader.load();
+
+            MedicoController controller = loader.getController();
+            controller.setMedico(medico);
+
+            Stage stage = new Stage();
+            stage.setTitle("Área do Médico");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            fecharJanelaAtual();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlertaErro("Erro ao abrir tela do médico", "Tente novamente.");
+        }
+    }
+
+    private void fecharJanelaAtual() {
+        Stage atual = (Stage) nomeUser.getScene().getWindow();
+        atual.close();
+    }
+
+    private void mostrarAlertaErro(String titulo, String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setHeaderText(titulo);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
+    }
+
 }

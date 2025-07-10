@@ -48,61 +48,76 @@ public class LoginController implements Initializable {
         String nome = campoNome.getText().trim();
         String senha = campoSenha.getText().trim();
         String tipoUsuario = ((RadioButton) grupoTipo.getSelectedToggle()).getText();
-        boolean loginValido = tipoUsuario.equals(MEDICO_PROMPT) && verificarMedico(nome, senha) || tipoUsuario.equals(PACIENTE_PROMPT) && verificarPaciente(nome, senha);
-        if(loginValido) {
-            labelMensagem.setText("Login bem-sucedido!");
-            abrirTelaUsuario(tipoUsuario);
-        } else {
-            labelMensagem.setText("Usuário ou senha inválidos.");
+        if(tipoUsuario.equals(PACIENTE_PROMPT)) {
+            Paciente paciente = verificarPaciente(nome, senha);
+            if(paciente != null) {
+                abrirTelaPaciente(paciente);
+            } else {
+                labelMensagem.setText("Paciente não encontrado");
+            }
+        } else if(tipoUsuario.equals(MEDICO_PROMPT)) {
+            Medico medico = verificarMedico(nome, senha);
+            if(medico != null) {
+                abrirTelaMedico(medico);
+            } else {
+                labelMensagem.setText("Médico não encontrado");
+            }
         }
     }
     public boolean validarCampos() {
         return !campoNome.getText().trim().isEmpty() && !campoSenha.getText().trim().isEmpty() && grupoTipo.getSelectedToggle() != null;
     }
-    public boolean verificarPaciente(String nome, String senha) {
+    public Paciente verificarPaciente(String nome, String senha) {
         ArrayList<Paciente> pacientes = PacienteDao.carregarPacientes();
         for (Paciente paciente : pacientes) {
             if(paciente.getNome().equals(nome) && paciente.getSenha().equals(senha)) {
-                return true;
+                return paciente;
             }
         }
-        return false;
+        return null;
     }
-    public boolean verificarMedico(String nome, String senha) {
+    public Medico verificarMedico(String nome, String senha) {
         ArrayList<Medico> medicos = MedicoDao.carregarMedico();
         for (Medico medico : medicos) {
             if(medico.getNome().equals(nome) && medico.getSenha().equals(senha)) {
-                return true;
+                return medico;
             }
         }
-        return false;
+        return null;
     }
-    public void abrirTelaUsuario(String tipoUsuario) {
-        String caminho = "";
-        if(tipoUsuario.equals(PACIENTE_PROMPT)) {
-            caminho = "/view/TelaPaciente.fxml";
-        } else if(tipoUsuario.equals(MEDICO_PROMPT)) {
-            caminho = "/view/TelaMedico.fxml";
-        }
+    public void abrirTelaPaciente(Paciente paciente) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
             Parent root = loader.load();
 
+            PacienteController controller = loader.getController();
+            controller.setPaciente(paciente);
             Stage stage = new Stage();
-            stage.setTitle("Área do " + tipoUsuario);
+            stage.setTitle("Área do Paciente");
             stage.setScene(new Scene(root));
             stage.show();
+            Stage atual = (Stage) campoNome.getScene().getWindow();
+            atual.close();
+        } catch (IOException e) {
+            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Paciente");
+        }
+    }
+    public void abrirTelaMedico(Medico medico) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
+            Parent root = loader.load();
 
-            // Fecha a janela atual (login)
+            MedicoController controller = loader.getController();
+            controller.setMedico(medico);
+            Stage stage = new Stage();
+            stage.setTitle("Área do Médico");
+            stage.setScene(new Scene(root));
+            stage.show();
             Stage atual = (Stage) campoNome.getScene().getWindow();
             atual.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText("Erro ao carregar a tela de " + tipoUsuario);
-            alerta.setContentText("Tente novamente.");
-            alerta.show();
+            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Médico");
         }
     }
     public void handleCadastrar() {
@@ -123,5 +138,11 @@ public class LoginController implements Initializable {
             alerta.setContentText("Tente novamente.");
             alerta.show();
         }
+    }
+    private void mostrarAlertaErro(String titulo, String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setHeaderText(titulo);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 }

@@ -1,6 +1,7 @@
 package clinicamed.controller;
 
 import clinicamed.model.Consulta;
+import clinicamed.model.Medico;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MedicoController implements Initializable {
+    private Medico medico;
     @FXML
     private Label labelNome;
     @FXML
@@ -44,5 +46,24 @@ public class MedicoController implements Initializable {
         columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnVerDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+    }
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+        mostrarDados();
+    }
+    public void mostrarDados() {
+        mostrarNomes();
+        mostrarEspecialidade();
+        mostrarPlanoSaude();
+    }
+    public void mostrarNomes() {
+        labelNomeTitle.setText(medico.getNome());
+        labelNome.setText(medico.getNome());
+    }
+    public void mostrarEspecialidade() {
+        labelEspecialidade.setText(medico.getEspecialdiade());
+    }
+    public void mostrarPlanoSaude() {
+        labelPlanoSaude.setText(medico.getPlanoSaude());
     }
 }
