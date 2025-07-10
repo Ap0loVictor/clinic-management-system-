@@ -13,25 +13,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.LoginController">
    <children>
-      <Label layoutX="55.0" layoutY="64.0" text="Login">
+      <Label layoutX="68.0" layoutY="38.0" prefHeight="62.0" prefWidth="401.0" text="Bem-vindo à Clínica Mais Saúde !">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="117.0" text="Nome :">
+      <Label layoutX="79.0" layoutY="186.0" text="Nome :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoNome" layoutX="165.0" layoutY="185.0" prefHeight="27.0" prefWidth="223.0" promptText="Digite seu nome">
          <font>
             <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="campoNome" layoutX="118.0" layoutY="114.0" promptText="Digite seu nome" />
-      <Label layoutX="55.0" layoutY="169.0" text="Senha :">
+         </font></TextField>
+      <Label layoutX="79.0" layoutY="234.0" text="Senha :">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-       <HBox layoutX="183.0" layoutY="224.0" prefHeight="20.0" prefWidth="210.0">
+       <HBox layoutX="193.0" layoutY="289.0" prefHeight="20.0" prefWidth="210.0">
          <children>
             <RadioButton fx:id="radioPaciente" mnemonicParsing="false" text="Paciente">
                <toggleGroup>
@@ -44,16 +47,24 @@
                </padding>
             </RadioButton>
          </children></HBox>
-      <Label layoutX="55.0" layoutY="224.0" prefHeight="20.0" prefWidth="126.0" text="Tipo de Usuário : ">
+      <Label layoutX="75.0" layoutY="289.0" prefHeight="20.0" prefWidth="126.0" text="Tipo de Usuário : ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <ButtonBar layoutX="127.0" layoutY="299.0" prefHeight="40.0" prefWidth="66.0" />
-      <PasswordField fx:id="campoSenha" layoutX="118.0" layoutY="166.0" promptText="Digite sua senha" />
-    <Button fx:id="botaoEntrar" layoutX="61.0" layoutY="258.0" mnemonicParsing="false" text="Entrar" onAction="#handleEntrar" />
-      <Label layoutX="55.0" layoutY="311.0" text="Não Possui uma conta ?" />
-      <Hyperlink fx:id="linkCadastro" layoutX="183.0" layoutY="308.0" onAction="#handleCadastrar" text="Cadastre-se" />
-      <Label layoutX="127.0" layoutY="262.0" fx:id="labelMensagem"  textFill="red" text="" />
+      <PasswordField fx:id="campoSenha" layoutX="165.0" layoutY="232.0" prefHeight="30.0" prefWidth="223.0" promptText="Digite sua senha">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+    <Button fx:id="botaoEntrar" layoutX="221.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleEntrar" text="Entrar" />
+      <Label layoutX="127.0" layoutY="354.0" text="Não Possui uma conta ?" />
+      <Hyperlink fx:id="linkCadastro" layoutX="254.0" layoutY="351.0" onAction="#handleCadastrar" text="Cadastre-se" />
+      <Label fx:id="labelMensagem" layoutX="127.0" layoutY="262.0" text="" textFill="red" />
+      <Label layoutX="138.0" layoutY="128.0" prefHeight="18.0" prefWidth="277.0" text="Faça seu Login">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

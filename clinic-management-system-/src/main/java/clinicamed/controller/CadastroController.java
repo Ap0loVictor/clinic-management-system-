@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CadastroController implements Initializable {
+    LoginController loginController = new LoginController();
     @FXML
     private RadioButton radioPaciente;
     @FXML
@@ -58,9 +59,11 @@ public class CadastroController implements Initializable {
         if(radioPaciente.isSelected()) {
             criarPaciente(nome, senha);
             labelCadastrado.setText("Paciente cadastrado com sucesso!");
+            loginController.abrirTelaUsuario("Paciente");
         } else if (radioMedico.isSelected()) {
             criarMedico(nome, senha);
             labelCadastrado.setText("Médico cadastrado com sucesso!");
+            loginController.abrirTelaUsuario("Médico");
         } else {
             labelCadastrado.setText("Selecione um tipo de usuário para cadastrar");
         }
