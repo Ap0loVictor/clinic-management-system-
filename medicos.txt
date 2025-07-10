@@ -2,3 +2,6 @@ Guilherme	2209	Cardiologista	Hapvida
 Bruno	1709	Pediatria	Unimed
 Felipe	7878	Ginecologista	Hapvida
 Rafael	1213	Pediatria	Hapvida
+Apolo	123	Sou bom	Tenho
+Apolo Victor	123	Emergenciologista	Hapvida
+Apolo Victor	123	Pediatria	normal
