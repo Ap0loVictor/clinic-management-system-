@@ -92,12 +92,8 @@ public class LoginController implements Initializable {
 
             PacienteController controller = loader.getController();
             controller.setPaciente(paciente);
-            Stage stage = new Stage();
-            stage.setTitle("Área do Paciente");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) campoNome.getScene().getWindow();
-            atual.close();
+            trocarDeTela(root, "Área do Paciente");
+            
         } catch (IOException e) {
             mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Paciente");
         }
@@ -109,12 +105,7 @@ public class LoginController implements Initializable {
 
             MedicoController controller = loader.getController();
             controller.setMedico(medico);
-            Stage stage = new Stage();
-            stage.setTitle("Área do Médico");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) campoNome.getScene().getWindow();
-            atual.close();
+            trocarDeTela(root, "Área do Médico");
 
         } catch (IOException e) {
             mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Médico");
@@ -124,11 +115,7 @@ public class LoginController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Cadastro.fxml"));
             Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Cadastro de Usuário");
-            stage.setScene(new Scene(root));
-            stage.show();
+            trocarDeTela(root, "Cadastro de Usuário");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,6 +125,14 @@ public class LoginController implements Initializable {
             alerta.setContentText("Tente novamente.");
             alerta.show();
         }
+    }
+    private void trocarDeTela(Parent root, String título){
+            Stage stage = new Stage();
+            stage.setTitle(título);
+            stage.setScene(new Scene(root));
+            stage.show();
+            Stage atual = (Stage) campoNome.getScene().getWindow();
+            atual.close();
     }
     private void mostrarAlertaErro(String titulo, String mensagem) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);

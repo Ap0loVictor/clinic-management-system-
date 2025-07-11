@@ -70,7 +70,7 @@ public class CadastroController implements Initializable {
             labelCadastrado.setText("Médico cadastrado com sucesso!");
             loginController.abrirTelaMedico(medico);
         } else {
-            labelCadastrado.setText("Selecione um tipo de usuário para cadastrar");
+            labelCadastrado.setText("Preencha todos os campos corretamente.");
         }
     }
     public Paciente criarPaciente(String nome, String senha) {
