@@ -1,3 +1,5 @@
 Everardo	3021	14	true
 Facundo	1717	40	false
 Tulio	2020	25	true
+Joao	aaa	22	true
+Apolo	123	19	false
