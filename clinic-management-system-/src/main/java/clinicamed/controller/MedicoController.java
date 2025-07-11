@@ -3,13 +3,15 @@ package clinicamed.controller;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,6 +29,8 @@ public class MedicoController implements Initializable {
     private Button buttonAtendido;
     @FXML
     private Button buttonSair;
+    @FXML
+    private Button buttonEditarPerfil;
     @FXML
     private TableView tableConsultasMarcadas;
     @FXML
@@ -59,6 +63,40 @@ public class MedicoController implements Initializable {
     public void mostrarNomes() {
         labelNomeTitle.setText(medico.getNome());
         labelNome.setText(medico.getNome());
+    }
+    public void handleSair() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Clinica Médica Vida Happy");
+            stage.setScene(new Scene(root));
+            stage.show();
+            Stage atual = (Stage) buttonSair.getScene().getWindow();
+            atual.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Erro ao tentar sair");
+            alerta.setContentText("Não foi possível retornar à tela de login.");
+            alerta.show();
+        }
+    }
+    @FXML
+    public void handleEditarPerfil() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditarPerfil.fxml"));
+            Parent root = loader.load();
+            EditarController controller = loader.getController();
+            controller.setUsuario(medico);
+            Stage stage = new Stage();
+            stage.setTitle("Editar Perfil");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());
