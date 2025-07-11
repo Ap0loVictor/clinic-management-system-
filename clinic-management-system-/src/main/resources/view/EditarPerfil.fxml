@@ -5,9 +5,9 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.EditarController">
    <children>
@@ -46,13 +46,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="campoNome" layoutX="164.0" layoutY="88.0"/>
+      <TextField fx:id="campoNome" layoutX="164.0" layoutY="88.0" />
       <PasswordField fx:id="campoSenha" layoutX="159.0" layoutY="147.0" />
       <TextField fx:id="campoIdade" layoutX="159.0" layoutY="201.0" prefHeight="26.0" prefWidth="66.0" />
       <TextField fx:id="campoEspecialidade" layoutX="461.0" layoutY="88.0" />
       <TextField fx:id="campoPlanoSaude" layoutX="476.0" layoutY="146.0" prefHeight="26.0" prefWidth="142.0" />
-      <RadioButton fx:id="radioTemPlanoSaude" layoutX="253.0" layoutY="255.0" mnemonicParsing="false" text="Tenho" />
-      <RadioButton fx:id="radioNaoTemPlano" layoutX="338.0" layoutY="255.0" mnemonicParsing="false" text="Não Tenho" />
+      <RadioButton fx:id="radioTemPlanoSaude" layoutX="253.0" layoutY="255.0" mnemonicParsing="false" text="Tenho">
+         <toggleGroup>
+            <ToggleGroup fx:id="tipoPlano" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="radioNaoTemPlano" layoutX="338.0" layoutY="255.0" mnemonicParsing="false" text="Não Tenho" toggleGroup="$tipoPlano" />
       <Button fx:id="buttonSalvar" layoutX="116.0" layoutY="325.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Salvar" />
       <Button fx:id="buttonVoltar" layoutX="219.0" layoutY="325.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Voltar" />
    </children>
