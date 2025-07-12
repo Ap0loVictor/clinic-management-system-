@@ -89,6 +89,26 @@ public class CadastroController extends Basecontroller implements Initializable 
     }
     public void abrirTelaPaciente(Paciente paciente) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarPaciente.fxml"));
+            Parent root = loader.load();
+
+            PacienteController controller = loader.getController();
+            controller.setPaciente(paciente);
+
+            Stage stage = new Stage();
+            stage.setTitle("Área do Paciente");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            fecharJanelaAtual();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlertaErro("Erro ao abrir tela do paciente", "Tente novamente.");
+        }
+    }
+
+
         Stage stageAtual = (Stage) buttonCadastrar.getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/TelaPaciente.fxml", "Área do Paciente",
             controller -> {
