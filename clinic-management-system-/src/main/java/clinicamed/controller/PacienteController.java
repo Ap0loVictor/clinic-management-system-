@@ -63,6 +63,8 @@ public class PacienteController implements Initializable {
             stage.setTitle("Editar Perfil");
             stage.setScene(new Scene(root));
             stage.show();
+            Stage atual = (Stage) buttonEditarPerfil.getScene().getWindow();
+            atual.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

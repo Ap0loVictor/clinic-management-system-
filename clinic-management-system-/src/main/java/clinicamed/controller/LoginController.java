@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
             stage.setTitle("Área do Paciente");
             stage.setScene(new Scene(root));
             stage.show();
-            Stage atual = (Stage) campoNome.getScene().getWindow();
+            Stage atual = (Stage) botaoEntrar.getScene().getWindow();
             atual.close();
         } catch (IOException e) {
             mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Paciente");
@@ -113,7 +113,7 @@ public class LoginController implements Initializable {
             stage.setTitle("Área do Médico");
             stage.setScene(new Scene(root));
             stage.show();
-            Stage atual = (Stage) campoNome.getScene().getWindow();
+            Stage atual = (Stage) botaoEntrar.getScene().getWindow();
             atual.close();
 
         } catch (IOException e) {
@@ -129,7 +129,8 @@ public class LoginController implements Initializable {
             stage.setTitle("Cadastro de Usuário");
             stage.setScene(new Scene(root));
             stage.show();
-
+            Stage atual = (Stage) linkCadastro.getScene().getWindow();
+            atual.close();
         } catch (IOException e) {
             e.printStackTrace();
             // Aqui você pode exibir uma mensagem de erro para o usuário se quiser

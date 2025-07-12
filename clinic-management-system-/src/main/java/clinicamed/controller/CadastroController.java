@@ -64,10 +64,12 @@ public class CadastroController implements Initializable {
         if(radioPaciente.isSelected()) {
             Paciente paciente = criarPaciente(nome, senha);
             labelCadastrado.setText("Paciente cadastrado com sucesso!");
+            fecharJanelaAtual();
             loginController.abrirTelaPaciente(paciente);
         } else if (radioMedico.isSelected()) {
             Medico medico = criarMedico(nome, senha);
             labelCadastrado.setText("Médico cadastrado com sucesso!");
+            fecharJanelaAtual();
             loginController.abrirTelaMedico(medico);
         } else {
             labelCadastrado.setText("Selecione um tipo de usuário para cadastrar");
@@ -99,8 +101,6 @@ public class CadastroController implements Initializable {
             stage.setTitle("Área do Paciente");
             stage.setScene(new Scene(root));
             stage.show();
-
-            fecharJanelaAtual();
         } catch (IOException e) {
             e.printStackTrace();
             mostrarAlertaErro("Erro ao abrir tela do paciente", "Tente novamente.");
@@ -128,7 +128,7 @@ public class CadastroController implements Initializable {
     }
 
     private void fecharJanelaAtual() {
-        Stage atual = (Stage) nomeUser.getScene().getWindow();
+        Stage atual = (Stage) buttonCadastrar.getScene().getWindow();
         atual.close();
     }
 
