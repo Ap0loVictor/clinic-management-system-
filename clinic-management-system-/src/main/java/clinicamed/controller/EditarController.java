@@ -3,6 +3,7 @@ package clinicamed.controller;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import clinicamed.model.Usuario;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditarController implements Initializable {
+public class EditarController extends Basecontroller implements Initializable {
     private Usuario usuario;
     @FXML
     private Label labelIdade;
@@ -43,6 +44,7 @@ public class EditarController implements Initializable {
     private Button buttonSalvar;
     @FXML
     private Button buttonVoltar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -84,36 +86,9 @@ public class EditarController implements Initializable {
         labelPlanoMedico.setVisible(false);
 
     }
-    public void handleVoltar() {
-        try{
-            FXMLLoader loader;
-            if(usuario instanceof Paciente paciente) {
-              loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
-              Parent root = loader.load();
-              PacienteController pacienteController = loader.getController();
-              pacienteController.setPaciente(paciente);
-            } else if(usuario instanceof Medico medico) {
-                loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
-                Parent root = loader.load();
-                MedicoController medicoController = loader.getController();
-                medicoController.setMedico(medico);
-            } else {
-                return;
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setTitle("Tela Principal");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) buttonVoltar.getScene().getWindow();
-            atual.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro");
-            alerta.setHeaderText("Não foi possível voltar");
-            alerta.setContentText("Erro ao carregar a tela anterior.");
-            alerta.show();
-        }
+    @Override
+    protected Button getBotaoSair() {
+        return buttonVoltar;
+
     }
 }

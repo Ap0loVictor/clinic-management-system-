@@ -5,14 +5,12 @@ import clinicamed.dao.PacienteDao;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import clinicamed.utils.Navegacao;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -86,64 +84,22 @@ public class LoginController implements Initializable {
         return null;
     }
     public void abrirTelaPaciente(Paciente paciente) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
-            Parent root = loader.load();
-
-            PacienteController controller = loader.getController();
-            controller.setPaciente(paciente);
-            Stage stage = new Stage();
-            stage.setTitle("Área do Paciente");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) botaoEntrar.getScene().getWindow();
-            atual.close();
-        } catch (IOException e) {
-            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Paciente");
-        }
-    }
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaPaciente.fxml", "Área do Paciente",
+            controller -> {
+                if (controller instanceof PacienteController) {((PacienteController) controller).setPaciente(paciente);}
+            });
+}
     public void abrirTelaMedico(Medico medico) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
-            Parent root = loader.load();
-
-            MedicoController controller = loader.getController();
-            controller.setMedico(medico);
-            Stage stage = new Stage();
-            stage.setTitle("Área do Médico");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) botaoEntrar.getScene().getWindow();
-            atual.close();
-
-        } catch (IOException e) {
-            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Médico");
-        }
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaMedico.fxml", "Área do Médico",
+            controller -> {
+                if (controller instanceof MedicoController) {((MedicoController) controller).setMedico(medico);}
+            });
     }
     public void handleCadastrar() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Cadastro.fxml"));
-            Parent root = loader.load();
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/Cadastro.fxml", "Cadastro de Usuário");
 
-            Stage stage = new Stage();
-            stage.setTitle("Cadastro de Usuário");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) linkCadastro.getScene().getWindow();
-            atual.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Aqui você pode exibir uma mensagem de erro para o usuário se quiser
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText("Erro ao carregar tela de cadastro.");
-            alerta.setContentText("Tente novamente.");
-            alerta.show();
-        }
-    }
-    private void mostrarAlertaErro(String titulo, String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setHeaderText(titulo);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
     }
 }
