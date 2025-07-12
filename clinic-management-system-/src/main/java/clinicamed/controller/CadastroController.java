@@ -15,12 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import clinicamed.utils.Navegacao;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CadastroController implements Initializable {
-    LoginController loginController = new LoginController();
+public class CadastroController extends Basecontroller implements Initializable {
     @FXML
     private RadioButton radioPaciente;
     @FXML
@@ -47,6 +48,8 @@ public class CadastroController implements Initializable {
     private Label labelCadastrado;
     @FXML
     private Button buttonCadastrar;
+    @FXML
+    private Button buttonSair;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //ainda sera implementado
@@ -64,11 +67,11 @@ public class CadastroController implements Initializable {
         if(radioPaciente.isSelected()) {
             Paciente paciente = criarPaciente(nome, senha);
             labelCadastrado.setText("Paciente cadastrado com sucesso!");
-            loginController.abrirTelaPaciente(paciente);
+            abrirTelaPaciente(paciente);
         } else if (radioMedico.isSelected()) {
             Medico medico = criarMedico(nome, senha);
             labelCadastrado.setText("Médico cadastrado com sucesso!");
-            loginController.abrirTelaMedico(medico);
+            abrirTelaMedico(medico);
         } else {
             labelCadastrado.setText("Preencha todos os campos corretamente.");
         }
@@ -88,55 +91,23 @@ public class CadastroController implements Initializable {
             return medico;
     }
     public void abrirTelaPaciente(Paciente paciente) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
-            Parent root = loader.load();
-
-            PacienteController controller = loader.getController();
-            controller.setPaciente(paciente);
-
-            Stage stage = new Stage();
-            stage.setTitle("Área do Paciente");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            fecharJanelaAtual();
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlertaErro("Erro ao abrir tela do paciente", "Tente novamente.");
-        }
-    }
-
+        Stage stageAtual = (Stage) buttonCadastrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaPaciente.fxml", "Área do Paciente",
+            controller -> {
+                if (controller instanceof PacienteController) {((PacienteController) controller).setPaciente(paciente);}
+            });
+}
     public void abrirTelaMedico(Medico medico) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
-            Parent root = loader.load();
-
-            MedicoController controller = loader.getController();
-            controller.setMedico(medico);
-
-            Stage stage = new Stage();
-            stage.setTitle("Área do Médico");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            fecharJanelaAtual();
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlertaErro("Erro ao abrir tela do médico", "Tente novamente.");
-        }
+        Stage stageAtual = (Stage) buttonCadastrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaMedico.fxml", "Área do Médico",
+            controller -> {
+                if (controller instanceof MedicoController) {((MedicoController) controller).setMedico(medico);}
+            });
     }
 
-    private void fecharJanelaAtual() {
-        Stage atual = (Stage) nomeUser.getScene().getWindow();
-        atual.close();
-    }
-
-    private void mostrarAlertaErro(String titulo, String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setHeaderText(titulo);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
     }
 
 }

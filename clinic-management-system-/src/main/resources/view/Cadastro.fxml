@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.CadastroController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.CadastroController">
    <children>
       <Label layoutX="53.0" layoutY="60.0" prefHeight="36.0" prefWidth="134.0" text="Cadastro">
          <font>
@@ -76,7 +76,8 @@
          </children>
       </AnchorPane>
       <PasswordField fx:id="senhaUser" layoutX="113.0" layoutY="171.0" promptText="Digite sua senha" />
-      <Button fx:id="buttonCadastrar" layoutX="267.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleCadastrar" text="Cadastrar" />
-      <Label fx:id="labelCadastrado" layoutX="32.0" layoutY="357.0" prefHeight="18.0" prefWidth="209.0" />
+      <Button fx:id="buttonCadastrar" layoutX="206.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleCadastrar" text="Cadastrar" />
+      <Label fx:id="labelCadastrado" layoutX="23.0" layoutY="319.0" prefHeight="18.0" prefWidth="309.0" />
+      <Button fx:id="buttonSair" layoutX="302.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSair" text="Voltar" />
    </children>
 </AnchorPane>

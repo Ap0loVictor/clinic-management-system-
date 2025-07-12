@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MedicoController implements Initializable {
+public class MedicoController extends Basecontroller implements Initializable {
     private Medico medico;
     @FXML
     private Label labelNome;
@@ -51,6 +51,7 @@ public class MedicoController implements Initializable {
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnVerDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
     }
+  
     public void setMedico(Medico medico) {
         this.medico = medico;
         mostrarDados();
@@ -64,25 +65,7 @@ public class MedicoController implements Initializable {
         labelNomeTitle.setText(medico.getNome());
         labelNome.setText(medico.getNome());
     }
-    public void handleSair() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Clinica Médica Vida Happy");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) buttonSair.getScene().getWindow();
-            atual.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro");
-            alerta.setHeaderText("Erro ao tentar sair");
-            alerta.setContentText("Não foi possível retornar à tela de login.");
-            alerta.show();
-        }
-    }
+    
     @FXML
     public void handleEditarPerfil() {
         try{
@@ -104,4 +87,9 @@ public class MedicoController implements Initializable {
     public void mostrarPlanoSaude() {
         labelPlanoSaude.setText(medico.getPlanoSaude());
     }
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
+    }
+
 }

@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import clinicamed.utils.Navegacao;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -86,30 +88,18 @@ public class LoginController implements Initializable {
         return null;
     }
     public void abrirTelaPaciente(Paciente paciente) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
-            Parent root = loader.load();
-
-            PacienteController controller = loader.getController();
-            controller.setPaciente(paciente);
-            trocarDeTela(root, "Área do Paciente");
-            
-        } catch (IOException e) {
-            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Paciente");
-        }
-    }
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaPaciente.fxml", "Área do Paciente",
+            controller -> {
+                if (controller instanceof PacienteController) {((PacienteController) controller).setPaciente(paciente);}
+            });
+}
     public void abrirTelaMedico(Medico medico) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaMedico.fxml"));
-            Parent root = loader.load();
-
-            MedicoController controller = loader.getController();
-            controller.setMedico(medico);
-            trocarDeTela(root, "Área do Médico");
-
-        } catch (IOException e) {
-            mostrarAlertaErro("Erro ao abrir tela", "Ocorreu um erro ao abrir a área do Médico");
-        }
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/TelaMedico.fxml", "Área do Médico",
+            controller -> {
+                if (controller instanceof MedicoController) {((MedicoController) controller).setMedico(medico);}
+            });
     }
     public void handleCadastrar() {
         try {

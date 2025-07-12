@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PacienteController implements Initializable {
+public class PacienteController extends Basecontroller implements Initializable {
     private Paciente paciente;
     @FXML
     private Label labelNome;
@@ -68,29 +68,14 @@ public class PacienteController implements Initializable {
         }
     }
     @FXML
-    public void handleSair() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Clinica Médica Vida Happy");
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) buttonSair.getScene().getWindow();
-            atual.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro");
-            alerta.setHeaderText("Erro ao tentar sair");
-            alerta.setContentText("Não foi possível retornar à tela de login.");
-            alerta.show();
-        }
-    }
     public void mostrarIdade() {
         labelIdade.setText(String.valueOf(paciente.getIdade()));
     }
     public void mostrarPlanoSaude() {
         labelPlanoSaude.setText(paciente.isTemPlano() ? "Sim" : "Não");
+    }
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
     }
 }
