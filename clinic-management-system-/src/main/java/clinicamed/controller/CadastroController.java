@@ -89,7 +89,7 @@ public class CadastroController implements Initializable {
     }
     public void abrirTelaPaciente(Paciente paciente) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaPaciente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarPaciente.fxml"));
             Parent root = loader.load();
 
             PacienteController controller = loader.getController();
