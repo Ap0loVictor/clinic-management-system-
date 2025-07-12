@@ -68,6 +68,7 @@ public class CadastroController extends Basecontroller implements Initializable 
             Medico medico = criarMedico(nome, senha);
             labelCadastrado.setText("Médico cadastrado com sucesso!");
             abrirTelaMedico(medico);
+
         } else {
             labelCadastrado.setText("Preencha todos os campos corretamente.");
         }
@@ -87,6 +88,7 @@ public class CadastroController extends Basecontroller implements Initializable 
             return medico;
     }
     public void abrirTelaPaciente(Paciente paciente) {
+
         Stage stageAtual = (Stage) buttonCadastrar.getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/TelaPaciente.fxml", "Área do Paciente",
             controller -> {
@@ -99,6 +101,7 @@ public class CadastroController extends Basecontroller implements Initializable 
             controller -> {
                 if (controller instanceof MedicoController) {((MedicoController) controller).setMedico(medico);}
             });
+
     }
 
     @Override

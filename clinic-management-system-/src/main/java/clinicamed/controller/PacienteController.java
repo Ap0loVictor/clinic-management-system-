@@ -52,6 +52,7 @@ public class PacienteController extends Basecontroller implements Initializable 
     public void handleEditarPerfil() {
         Stage stageAtual = (Stage) getBotaoSair().getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+
     }
     
     public void mostrarIdade() {

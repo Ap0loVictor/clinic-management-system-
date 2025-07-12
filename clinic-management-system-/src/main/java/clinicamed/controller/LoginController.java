@@ -100,5 +100,6 @@ public class LoginController implements Initializable {
     public void handleCadastrar() {
         Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/Cadastro.fxml", "Cadastro de Usuário");
+
     }
 }

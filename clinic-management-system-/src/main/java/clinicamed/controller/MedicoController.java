@@ -64,8 +64,10 @@ public class MedicoController extends Basecontroller implements Initializable {
     }
     
     public void handleEditarPerfil() {
+
         Stage stageAtual = (Stage) getBotaoSair().getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());
