@@ -1,5 +1,6 @@
 package clinicamed.controller;
 
+import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
 import javafx.fxml.FXML;
@@ -9,9 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 public class MedicoController implements Initializable {
     private Medico medico;
@@ -28,7 +34,7 @@ public class MedicoController implements Initializable {
     @FXML
     private Button buttonSair;
     @FXML
-    private TableView tableConsultasMarcadas;
+    private TableView<Consulta> tableConsultasMarcadas;
     @FXML
     private TableColumn<Consulta, String> columnPaciente;
     @FXML
@@ -41,15 +47,42 @@ public class MedicoController implements Initializable {
     private TableColumn<Consulta, String> columnVerDescricao;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        columnPaciente.setCellValueFactory(new PropertyValueFactory<>("nomePaciente"));
-        columData.setCellValueFactory(new PropertyValueFactory<>("data"));
-        columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
-        columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        columnVerDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        configurarColunasTabela();
     }
+
+    private void configurarColunasTabela() {
+    columnPaciente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomePaciente()));
+    columData.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getData()));
+    columnHorario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHorario()));
+    columnStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
+    columnVerDescricao.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
+    }
+
+    private void carregarConsultasMedico() {
+    ArrayList<Consulta> todasConsultas = ConsultaDao.carregarConsultas();
+    ObservableList<Consulta> consultasDoMedico = FXCollections.observableArrayList();
+
+    System.out.println("Médico logado: " + medico.getNome());   
+    for (Consulta c : todasConsultas) {
+        System.out.println("Consulta do médico: " + c.getNomeMedico());
+        if (c.getNomeMedico().equalsIgnoreCase(medico.getNome())) {
+            consultasDoMedico.add(c);
+        }
+    }
+
+    tableConsultasMarcadas.setItems(consultasDoMedico);
+    }
+
+
     public void setMedico(Medico medico) {
         this.medico = medico;
+        labelNome.setText(medico.getNome());
+        labelNomeTitle.setText(medico.getNome());
+        labelEspecialidade.setText(medico.getEspecialdiade());
+        labelPlanoSaude.setText(medico.getPlanoSaude());
+
         mostrarDados();
+        carregarConsultasMedico();
     }
     public void mostrarDados() {
         mostrarNomes();
