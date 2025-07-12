@@ -34,4 +34,3 @@ public class CadastrarConsultaController {
         System.out.println("Consulta salva com sucesso!");
     }
 }
-
