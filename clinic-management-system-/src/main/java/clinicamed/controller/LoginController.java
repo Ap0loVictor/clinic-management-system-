@@ -5,16 +5,12 @@ import clinicamed.dao.PacienteDao;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import clinicamed.utils.Navegacao;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -102,32 +98,7 @@ public class LoginController implements Initializable {
             });
     }
     public void handleCadastrar() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Cadastro.fxml"));
-            Parent root = loader.load();
-            trocarDeTela(root, "Cadastro de Usuário");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Aqui você pode exibir uma mensagem de erro para o usuário se quiser
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText("Erro ao carregar tela de cadastro.");
-            alerta.setContentText("Tente novamente.");
-            alerta.show();
-        }
-    }
-    private void trocarDeTela(Parent root, String título){
-            Stage stage = new Stage();
-            stage.setTitle(título);
-            stage.setScene(new Scene(root));
-            stage.show();
-            Stage atual = (Stage) campoNome.getScene().getWindow();
-            atual.close();
-    }
-    private void mostrarAlertaErro(String titulo, String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setHeaderText(titulo);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
+        Stage stageAtual = (Stage) botaoEntrar.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/Cadastro.fxml", "Cadastro de Usuário");
     }
 }

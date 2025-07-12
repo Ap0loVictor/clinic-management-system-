@@ -7,17 +7,13 @@ import clinicamed.model.Paciente;
 import clinicamed.userfactory.MedicoFactory;
 import clinicamed.userfactory.PacienteFactory;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import clinicamed.utils.Navegacao;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

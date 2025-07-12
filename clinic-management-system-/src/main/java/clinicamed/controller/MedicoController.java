@@ -2,16 +2,13 @@ package clinicamed.controller;
 
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,20 +63,9 @@ public class MedicoController extends Basecontroller implements Initializable {
         labelNome.setText(medico.getNome());
     }
     
-    @FXML
     public void handleEditarPerfil() {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/EditarPerfil.fxml"));
-            Parent root = loader.load();
-            EditarController controller = loader.getController();
-            controller.setUsuario(medico);
-            Stage stage = new Stage();
-            stage.setTitle("Editar Perfil");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stageAtual = (Stage) getBotaoSair().getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());

@@ -1,10 +1,9 @@
 package clinicamed.controller;
 
-import clinicamed.dao.MedicoDao;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import clinicamed.model.Usuario;
-import clinicamed.userfactory.MedicoFactory;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditarController implements Initializable {
+public class EditarController extends Basecontroller implements Initializable {
     private Usuario usuario;
     @FXML
     private Label labelIdade;
@@ -43,6 +42,7 @@ public class EditarController implements Initializable {
     private Button buttonSalvar;
     @FXML
     private Button buttonVoltar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -83,5 +83,9 @@ public class EditarController implements Initializable {
         labelEspecialidade.setVisible(false);
         labelPlanoMedico.setVisible(false);
 
+    }
+    @Override
+    protected Button getBotaoSair() {
+        return buttonVoltar;
     }
 }

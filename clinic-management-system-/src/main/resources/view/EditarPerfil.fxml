@@ -57,6 +57,6 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="radioNaoTemPlano" layoutX="338.0" layoutY="255.0" mnemonicParsing="false" text="Não Tenho" toggleGroup="$tipoPlano" />
       <Button fx:id="buttonSalvar" layoutX="116.0" layoutY="325.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Salvar" />
-      <Button fx:id="buttonVoltar" layoutX="219.0" layoutY="325.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Voltar" />
+      <Button fx:id="buttonVoltar" layoutX="219.0" layoutY="325.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" text="Voltar" onAction="#handleSair" />
    </children>
 </AnchorPane>
