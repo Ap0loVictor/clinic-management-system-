@@ -1,6 +1,7 @@
 package clinicamed.controller;
 
 import clinicamed.model.Paciente;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PacienteController implements Initializable {
+public class PacienteController extends Basecontroller implements Initializable {
     private Paciente paciente;
     @FXML
     private Label labelNome;
@@ -51,11 +52,23 @@ public class PacienteController implements Initializable {
         labelNomeTitle.setText(paciente.getNome());
         labelNome.setText(paciente.getNome());
     }
+    
+    public void handleEditarPerfil() {
+        Stage stageAtual = (Stage) getBotaoSair().getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+
+    }
+    
     public void mostrarIdade() {
         labelIdade.setText(String.valueOf(paciente.getIdade()));
     }
     public void mostrarPlanoSaude() {
         labelPlanoSaude.setText(paciente.isTemPlano() ? "Sim" : "Não");
+    }
+
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
     }
     
     @FXML
@@ -73,5 +86,6 @@ public class PacienteController implements Initializable {
     URL resource = getClass().getResource("/view/TelaCadastrarConsulta.fxml");
     System.out.println("Caminho encontrado: " + resource);
 }
+
 
 }

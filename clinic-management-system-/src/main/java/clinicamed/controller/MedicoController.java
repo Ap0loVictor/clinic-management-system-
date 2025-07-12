@@ -3,23 +3,25 @@ package clinicamed.controller;
 import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.stage.Stage;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
 
-public class MedicoController implements Initializable {
+public class MedicoController extends Basecontroller implements Initializable {
     private Medico medico;
     @FXML
     private Label labelNome;
@@ -33,6 +35,8 @@ public class MedicoController implements Initializable {
     private Button buttonAtendido;
     @FXML
     private Button buttonSair;
+    @FXML
+    private Button buttonEditarPerfil;
     @FXML
     private TableView<Consulta> tableConsultasMarcadas;
     @FXML
@@ -73,7 +77,6 @@ public class MedicoController implements Initializable {
     tableConsultasMarcadas.setItems(consultasDoMedico);
     }
 
-
     public void setMedico(Medico medico) {
         this.medico = medico;
         labelNome.setText(medico.getNome());
@@ -93,10 +96,22 @@ public class MedicoController implements Initializable {
         labelNomeTitle.setText(medico.getNome());
         labelNome.setText(medico.getNome());
     }
+    
+    public void handleEditarPerfil() {
+
+        Stage stageAtual = (Stage) getBotaoSair().getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+
+    }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());
     }
     public void mostrarPlanoSaude() {
         labelPlanoSaude.setText(medico.getPlanoSaude());
     }
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
+    }
+
 }

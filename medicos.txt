@@ -2,7 +2,12 @@ Guilherme	2209	Cardiologista	Hapvida
 Bruno	1709	Pediatria	Unimed
 Felipe	7878	Ginecologista	Hapvida
 Rafael	1213	Pediatria	Hapvida
-Apolo	123	Sou bom	Tenho
-Apolo Victor	123	Emergenciologista	Hapvida
-Apolo Victor	123	Pediatria	normal
+
+Apolo	123	O melhor	Tenho
+Apolor	1234	Dentista	DosBons
+Teste1	1	teste	teste
+aaaaaaaaa	123	sim	sim
+AgoraSim	123	SaberMuito	DosBons
+
 davi	123	demais	gostoso
+
