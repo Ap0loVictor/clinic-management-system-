@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="clinicamed.controller.CadastrarConsultaController"
+            prefWidth="600.0" prefHeight="400.0">
+    <children>
+        <Label layoutX="210.0" layoutY="20.0" text="Cadastrar Consulta">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="50.0" layoutY="70.0" text="Médico:"/>
+        <TextField fx:id="campoMedico" layoutX="150.0" layoutY="65.0" prefWidth="300.0"/>
+
+        <Label layoutX="50.0" layoutY="110.0" text="Paciente:"/>
+        <TextField fx:id="campoPaciente" layoutX="150.0" layoutY="105.0" prefWidth="300.0" editable="false"/>
+
+        <Label layoutX="50.0" layoutY="150.0" text="Data:"/>
+        <TextField fx:id="campoData" layoutX="150.0" layoutY="145.0" prefWidth="150.0" promptText="dd/MM/yyyy"/>
+
+        <Label layoutX="320.0" layoutY="150.0" text="Horário:"/>
+        <TextField fx:id="campoHorario" layoutX="390.0" layoutY="145.0" prefWidth="100.0" promptText="HH:mm"/>
+
+        <Label layoutX="50.0" layoutY="190.0" text="Descrição:"/>
+        <TextArea fx:id="campoDescricao" layoutX="150.0" layoutY="185.0" prefWidth="300.0" prefHeight="100.0"/>
+
+        <Button text="Salvar Consulta" layoutX="230.0" layoutY="310.0" onAction="#handleSalvarConsulta"/>
+    </children>
+</AnchorPane>
