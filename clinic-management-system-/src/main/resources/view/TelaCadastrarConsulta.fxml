@@ -18,20 +18,17 @@
         <TextField fx:id="campoMedico" layoutX="150.0" layoutY="65.0" prefWidth="300.0"/>
 
         <Label layoutX="50.0" layoutY="110.0" text="Paciente:"/>
-        <TextField fx:id="campoPaciente" layoutX="150.0" layoutY="105.0" prefWidth="300.0"/>
+        <TextField fx:id="campoPaciente" layoutX="150.0" layoutY="105.0" prefWidth="300.0" editable="false"/>
 
         <Label layoutX="50.0" layoutY="150.0" text="Data:"/>
-        <TextField fx:id="campoData" layoutX="150.0" layoutY="145.0" prefWidth="150.0" promptText="YYYY-MM-DD"/>
+        <TextField fx:id="campoData" layoutX="150.0" layoutY="145.0" prefWidth="150.0" promptText="dd/MM/yyyy"/>
 
         <Label layoutX="320.0" layoutY="150.0" text="Horário:"/>
-        <TextField fx:id="campoHorario" layoutX="390.0" layoutY="145.0" prefWidth="100.0" promptText="HH:MM"/>
+        <TextField fx:id="campoHorario" layoutX="390.0" layoutY="145.0" prefWidth="100.0" promptText="HH:mm"/>
 
-        <Label layoutX="50.0" layoutY="190.0" text="Status:"/>
-        <ComboBox fx:id="comboStatus" layoutX="150.0" layoutY="185.0" prefWidth="150.0"/>
+        <Label layoutX="50.0" layoutY="190.0" text="Descrição:"/>
+        <TextArea fx:id="campoDescricao" layoutX="150.0" layoutY="185.0" prefWidth="300.0" prefHeight="100.0"/>
 
-        <Label layoutX="50.0" layoutY="230.0" text="Descrição:"/>
-        <TextArea fx:id="campoDescricao" layoutX="150.0" layoutY="225.0" prefWidth="300.0" prefHeight="80.0"/>
-
-        <Button text="Salvar Consulta" layoutX="230.0" layoutY="330.0" onAction="#handleSalvarConsulta"/>
+        <Button text="Salvar Consulta" layoutX="230.0" layoutY="310.0" onAction="#handleSalvarConsulta"/>
     </children>
 </AnchorPane>

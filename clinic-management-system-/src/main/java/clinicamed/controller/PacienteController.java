@@ -73,21 +73,21 @@ public class PacienteController implements Initializable {
     }
 
     @FXML
-    private void handleMarcarConsulta() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarConsulta.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Marcar Consulta");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        URL resource = getClass().getResource("/view/TelaCadastrarConsulta.fxml");
-        System.out.println("Caminho encontrado: " + resource);
+private void handleMarcarConsulta() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarConsulta.fxml"));
+        Parent root = loader.load();
+        clinicamed.controller.CadastrarConsultaController cadastroController = loader.getController();
+        cadastroController.setPaciente(paciente.getNome());
+        Stage stage = new Stage();
+        stage.setTitle("Marcar Consulta");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
 
     @FXML
     private void handleSair() {
