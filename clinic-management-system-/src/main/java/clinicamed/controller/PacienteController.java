@@ -1,6 +1,7 @@
 package clinicamed.controller;
 
 import clinicamed.model.Paciente;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class PacienteController implements Initializable {
     private Paciente paciente;
+
     @FXML
     private Label labelNome;
     @FXML
@@ -34,44 +36,62 @@ public class PacienteController implements Initializable {
     private Button buttonMedicosDisponiveis;
     @FXML
     private Button buttonSair;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // Inicialização, se necessário
     }
+
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
         mostrarDados();
     }
-    public void mostrarDados() {
+
+    private void mostrarDados() {
         mostrarNomes();
         mostrarIdade();
         mostrarPlanoSaude();
     }
-    public void mostrarNomes() {
+
+    private void mostrarNomes() {
         labelNomeTitle.setText(paciente.getNome());
         labelNome.setText(paciente.getNome());
     }
-    public void mostrarIdade() {
+
+    private void mostrarIdade() {
         labelIdade.setText(String.valueOf(paciente.getIdade()));
     }
-    public void mostrarPlanoSaude() {
+
+    private void mostrarPlanoSaude() {
         labelPlanoSaude.setText(paciente.isTemPlano() ? "Sim" : "Não");
     }
-    
+
+    @FXML
+    private void handleEditarPerfil() {
+        Stage stageAtual = (Stage) buttonEditarPerfil.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+    }
+
     @FXML
     private void handleMarcarConsulta() {
-    try {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarConsulta.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Marcar Consulta");
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    URL resource = getClass().getResource("/view/TelaCadastrarConsulta.fxml");
-    System.out.println("Caminho encontrado: " + resource);
-}
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TelaCadastrarConsulta.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Marcar Consulta");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        URL resource = getClass().getResource("/view/TelaCadastrarConsulta.fxml");
+        System.out.println("Caminho encontrado: " + resource);
+    }
+
+    @FXML
+    private void handleSair() {
+        Stage stageAtual = (Stage) buttonSair.getScene().getWindow();
+        Navegacao.voltarParaLogin(stageAtual);
+    }
 }
