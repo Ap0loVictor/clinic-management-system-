@@ -7,13 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class CadastrarConsultaController {
+public class CadastrarConsultaController{
 
     @FXML private TextField campoMedico;
     @FXML private TextField campoPaciente;
     @FXML private TextField campoData;
     @FXML private TextField campoHorario;
     @FXML private TextArea campoDescricao;
+    @FXML private Button buttonSair;
+    @FXML private Button salvarConsulta;
 
     private String nomePaciente;
 
