@@ -29,6 +29,6 @@
         <Label layoutX="50.0" layoutY="190.0" text="Descrição:"/>
         <TextArea fx:id="campoDescricao" layoutX="150.0" layoutY="185.0" prefWidth="300.0" prefHeight="100.0"/>
 
-        <Button text="Salvar Consulta" layoutX="230.0" layoutY="310.0" onAction="#handleSalvarConsulta"/>
+        <Button fx:id="salvarConsulta" text="Salvar Consulta" layoutX="230.0" layoutY="310.0" onAction="#handleSalvarConsulta"/>
     </children>
 </AnchorPane>
