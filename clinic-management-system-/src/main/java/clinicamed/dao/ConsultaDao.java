@@ -1,9 +1,11 @@
 package clinicamed.dao;
 
 import clinicamed.model.Consulta;
+import clinicamed.model.Medico;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultaDao {
     private static final String CAMINHO_ARQ_CONSULTA = "consultas.txt";
@@ -45,5 +47,18 @@ public class ConsultaDao {
             e.printStackTrace();
         }
         return consultas;
+    }
+
+    public static int contarConsultasPorData(Medico medico, String data) {
+        int contador = 0;
+        List<Consulta> consultas = carregarConsultas();
+
+        for (Consulta c : consultas) {
+            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data)) {
+                contador++;
+            }
+        }
+
+        return contador;
     }
 }
