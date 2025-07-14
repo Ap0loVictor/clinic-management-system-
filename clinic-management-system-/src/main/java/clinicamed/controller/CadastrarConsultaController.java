@@ -5,13 +5,14 @@ import clinicamed.model.Consulta;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class CadastrarConsultaController {
+public class CadastrarConsultaController extends Basecontroller {
 
     @FXML private TextField campoMedico;
     @FXML private TextField campoPaciente;
     @FXML private TextField campoData;
     @FXML private TextField campoHorario;
     @FXML private TextArea campoDescricao;
+    @FXML private Button buttonSair;
 
     private String nomePaciente;
 
@@ -36,5 +37,9 @@ public class CadastrarConsultaController {
         ConsultaDao.salvarConsulta(consulta);
 
         System.out.println("Consulta salva com sucesso!");
+    }
+    @Override
+    public Button getBotaoSair() {
+        return buttonSair;
     }
 }
