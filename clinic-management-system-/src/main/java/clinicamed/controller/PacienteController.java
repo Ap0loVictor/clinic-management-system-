@@ -69,7 +69,9 @@ public class PacienteController implements Initializable {
     @FXML
     private void handleEditarPerfil() {
         Stage stageAtual = (Stage) buttonEditarPerfil.getScene().getWindow();
-        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil", controller -> {
+            ((EditarController) controller).setUsuario(paciente);
+        });
     }
 
     @FXML

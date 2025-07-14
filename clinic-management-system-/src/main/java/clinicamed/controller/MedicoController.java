@@ -35,6 +35,8 @@ public class MedicoController implements Initializable {
     @FXML
     private Button buttonSair;
     @FXML
+    private Button editarPerfil;
+    @FXML
     private TableView<Consulta> tableConsultasMarcadas;
     @FXML
     private TableColumn<Consulta, String> columnPaciente;
@@ -97,6 +99,12 @@ public class MedicoController implements Initializable {
     public void handleSair() {
         Stage stageAtual = (Stage) buttonSair.getScene().getWindow();
         Navegacao.voltarParaLogin(stageAtual);
+    }
+    public void handleEditarPerfil() {
+        Stage stageAtual = (Stage) editarPerfil.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil", controller -> {
+            ((EditarController) controller).setUsuario(medico);
+        });
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());

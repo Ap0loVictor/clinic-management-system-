@@ -4,12 +4,14 @@ import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import clinicamed.model.Usuario;
 
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -83,6 +85,18 @@ public class EditarController extends Basecontroller implements Initializable {
         labelEspecialidade.setVisible(false);
         labelPlanoMedico.setVisible(false);
 
+    }
+    public void handleVoltar() {
+        Stage atual = (Stage) buttonVoltar.getScene().getWindow();
+        if (usuario instanceof Paciente paciente) {
+            Navegacao.trocarTela(atual, "/view/TelaPaciente.fxml", "Área do Paciente", controller -> {
+                ((PacienteController) controller).setPaciente(paciente);
+            });
+        } else if (usuario instanceof Medico medico) {
+            Navegacao.trocarTela(atual, "/view/TelaMedico.fxml", "Área do Médico", controller -> {
+                ((MedicoController) controller).setMedico(medico);
+            });
+        }
     }
     @Override
     protected Button getBotaoSair() {
