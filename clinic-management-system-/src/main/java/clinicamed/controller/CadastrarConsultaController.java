@@ -2,8 +2,10 @@ package clinicamed.controller;
 
 import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class CadastrarConsultaController {
 
@@ -34,7 +36,7 @@ public class CadastrarConsultaController {
 
         Consulta consulta = new Consulta(medico, paciente, data, horario, status, descricao);
         ConsultaDao.salvarConsulta(consulta);
-
-        System.out.println("Consulta salva com sucesso!");
+        Stage stageAtual = (Stage) campoMedico.getScene().getWindow();
+        stageAtual.close();
     }
 }

@@ -3,6 +3,7 @@ package clinicamed.controller;
 import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 
 import java.net.URL;
@@ -91,6 +93,10 @@ public class MedicoController implements Initializable {
     public void mostrarNomes() {
         labelNomeTitle.setText(medico.getNome());
         labelNome.setText(medico.getNome());
+    }
+    public void handleSair() {
+        Stage stageAtual = (Stage) buttonSair.getScene().getWindow();
+        Navegacao.voltarParaLogin(stageAtual);
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());
