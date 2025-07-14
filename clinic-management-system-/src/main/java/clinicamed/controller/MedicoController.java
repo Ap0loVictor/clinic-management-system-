@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 
 import java.net.URL;
@@ -34,6 +35,8 @@ public class MedicoController extends Basecontroller implements Initializable {
     private Button buttonAtendido;
     @FXML
     private Button buttonSair;
+    @FXML
+    private Button editarPerfil;
     @FXML
     private TableView<Consulta> tableConsultasMarcadas;
     @FXML
@@ -100,6 +103,16 @@ public class MedicoController extends Basecontroller implements Initializable {
     public void mostrarNomes() {
         labelNomeTitle.setText(medico.getNome());
         labelNome.setText(medico.getNome());
+    }
+    public void handleSair() {
+        Stage stageAtual = (Stage) buttonSair.getScene().getWindow();
+        Navegacao.voltarParaLogin(stageAtual);
+    }
+    public void handleEditarPerfil() {
+        Stage stageAtual = (Stage) editarPerfil.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil", controller -> {
+            ((EditarController) controller).setUsuario(medico);
+        });
     }
     public void mostrarEspecialidade() {
         labelEspecialidade.setText(medico.getEspecialdiade());

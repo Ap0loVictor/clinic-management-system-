@@ -38,9 +38,7 @@ public class CadastrarConsultaController{
 
         Consulta consulta = new Consulta(medico, paciente, data, horario, status, descricao);
         ConsultaDao.salvarConsulta(consulta);
-
-        Stage stageAtual = (Stage) salvarConsulta.getScene().getWindow();
+        Stage stageAtual = (Stage) campoMedico.getScene().getWindow();
         stageAtual.close();
-        
     }
 }
