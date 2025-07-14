@@ -14,9 +14,6 @@ import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.stage.Stage;
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
@@ -49,8 +46,6 @@ public class MedicoController extends Basecontroller implements Initializable {
     private TableColumn<Consulta, String> columnHorario;
     @FXML
     private TableColumn<Consulta, String> columnVerDescricao;
-    @FXML
-    private Button buttonEditarPerfil;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunasTabela();
@@ -78,13 +73,6 @@ public class MedicoController extends Basecontroller implements Initializable {
 
     tableConsultasMarcadas.setItems(consultasDoMedico);
     }
-
-    @FXML
-    private void handleEditarPerfil() {
-        Stage stageAtual = (Stage) buttonEditarPerfil.getScene().getWindow();
-        Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil");
-    }
-
     public void setMedico(Medico medico) {
         this.medico = medico;
         labelNome.setText(medico.getNome());

@@ -2,13 +2,18 @@ package clinicamed.controller;
 
 import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
+import clinicamed.model.Paciente;
 import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class CadastrarConsultaController{
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class CadastrarConsultaController extends Basecontroller implements Initializable {
+    private Paciente paciente;
     @FXML private TextField campoMedico;
     @FXML private TextField campoPaciente;
     @FXML private TextField campoData;
@@ -16,15 +21,22 @@ public class CadastrarConsultaController{
     @FXML private TextArea campoDescricao;
     @FXML private Button buttonSair;
     @FXML private Button salvarConsulta;
+    @FXML private Button voltar;
 
     private String nomePaciente;
 
-    public void setPaciente(String nomePaciente) {
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
         this.nomePaciente = nomePaciente;
         campoPaciente.setText(nomePaciente);
         campoPaciente.setEditable(false); 
-    } 
-
+    }
+    public void handleVoltar() {
+        Stage atual = (Stage) voltar.getScene().getWindow();
+        Navegacao.trocarTela(atual, "/view/TelaPaciente.fxml", "Área do Paciente", controller -> {
+            ((PacienteController) controller).setPaciente(paciente);
+        });
+    }
     @FXML
     private void handleSalvarConsulta() {
         String medico = campoMedico.getText();
@@ -40,5 +52,15 @@ public class CadastrarConsultaController{
         ConsultaDao.salvarConsulta(consulta);
         Stage stageAtual = (Stage) campoMedico.getScene().getWindow();
         stageAtual.close();
+    }
+
+    @Override
+    protected Button getBotaoSair() {
+        return null;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }
