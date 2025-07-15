@@ -5,17 +5,14 @@ import clinicamed.dao.MedicoDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class CadastrarConsultaController implements Initializable {
 
@@ -37,16 +34,10 @@ public class CadastrarConsultaController implements Initializable {
         campoPaciente.setText(paciente.getNome());
         campoPaciente.setEditable(false);
         carregarEspecialidades();
-
-        //nomePaciente = paciente.getNome();
-        //campoPaciente.setText(nomePaciente);
-        //campoPaciente.setEditable(false); 
-
     }
 
     private void carregarEspecialidades() {
-        Set<String> especialidades = MedicoDao.listarEspecialidades();
-        comboEspecialidades.getItems().addAll(especialidades);
+        comboEspecialidades.getItems().addAll(MedicoDao.listarEspecialidades());
     }
 
     @FXML
@@ -55,7 +46,7 @@ public class CadastrarConsultaController implements Initializable {
         if (especialidadeSelecionada == null) return;
 
         comboMedicos.getItems().clear();
-        medicosFiltrados = MedicoDao.buscarPorEspecialidadeEPlano(especialidadeSelecionada, paciente.isTemPlano());
+        medicosFiltrados = MedicoDao.buscarPorEspecialidadeEPlano(especialidadeSelecionada, paciente.temPlano());
         for (Medico m : medicosFiltrados) {
             comboMedicos.getItems().add(m.getNome());
         }
@@ -87,9 +78,7 @@ public class CadastrarConsultaController implements Initializable {
         ConsultaDao.salvarConsulta(consulta);
 
         mostrarAlerta("Consulta marcada com sucesso!");
-
         handleVoltar();
-
     }
 
     private void mostrarAlerta(String mensagem) {
@@ -99,8 +88,14 @@ public class CadastrarConsultaController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void handleVoltar() {
+        Stage stage = (Stage) buttonVoltar.getScene().getWindow();
+        stage.close();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // carregamento inicial, se necessário
+        // Inicialização se necessário
     }
-} 
+}

@@ -1,3 +1,4 @@
+// AtenderConsultaController.java
 package clinicamed.controller;
 
 import clinicamed.dao.ConsultaDao;
@@ -22,7 +23,7 @@ public class AtenderConsultaController {
         this.paciente = paciente;
 
         labelPaciente.setText(consulta.getNomePaciente());
-        labelPlano.setText(paciente.isTemPlano() ? "Sim" : "Não");
+        labelPlano.setText(paciente.temPlano() ? "Sim" : "Não");
     }
 
     @FXML

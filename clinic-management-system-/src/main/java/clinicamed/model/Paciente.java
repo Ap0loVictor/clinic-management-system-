@@ -1,6 +1,6 @@
 package clinicamed.model;
 
-public class Paciente extends Usuario{
+public class Paciente extends Usuario {
     private int idade;
     private String planoSaude;
 
@@ -10,48 +10,37 @@ public class Paciente extends Usuario{
         this.planoSaude = planoSaude;
     }
 
-    @Override
-    public void setNome(String nome) {
-        super.setNome(nome);
-    }
-
-    @Override
-    public void setSenha(String senha) {
-        super.setSenha(senha);
-    }
-
-    public String getPlanoSaude() {
-        return planoSaude;
-    }
-    public void setPlanoSaude(String planoSaude) {
-        this.planoSaude = planoSaude;
+    public int getIdade() {
+        return idade;
     }
 
     public void setIdade(int idade) {
         this.idade = idade;
     }
 
-    @Override
-    public String getNome() {
-        return super.getNome();
+    public String getPlanoSaude() {
+        return planoSaude;
     }
 
-    @Override
-    public String getSenha() {
-        return super.getSenha();
+    public void setPlanoSaude(String planoSaude) {
+        this.planoSaude = planoSaude;
     }
 
-    public int getIdade() {
-        return idade;
+    /**
+     * Método de apoio para verificar se o paciente tem plano de saúde.
+     * @return true se tiver plano diferente de "Não", false caso contrário.
+     */
+    public boolean temPlano() {
+        return planoSaude != null && !planoSaude.equalsIgnoreCase("Não");
     }
 
     @Override
     public String toString() {
         return "Paciente{" +
-                "planoSaude=" + planoSaude +
+                "nome='" + getNome() + '\'' +
+                ", senha='" + getSenha() + '\'' +
                 ", idade=" + idade +
-                ", senha='" + senha + '\'' +
-                ", nome='" + nome + '\'' +
+                ", planoSaude='" + planoSaude + '\'' +
                 '}';
     }
 }
