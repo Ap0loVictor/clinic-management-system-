@@ -81,13 +81,20 @@ public class PacienteController implements Initializable {
         });
     }
 
+    // private void handleMinhasConsultas() {
+    //     Stage atual = (Stage) buttonMinhasConsultas.getScene().getWindow();
+    //     Navegacao.trocarTela(atual, "/view/TelaMinhasConsultas.fxml", "Minhas Consultas", controller -> {
+    //         ((MinhasConsultasController) controller).setPaciente(consulta);
+    //     });
+    // }
+
     @FXML
-private void handleMarcarConsulta() {
-  Stage atual = (Stage) buttonMarcarConsulta.getScene().getWindow();
-  Navegacao.trocarTela(atual, "/view/TelaCadastrarConsulta.fxml", "Marcar Consulta", controller -> {
-      ((CadastrarConsultaController) controller).setPaciente(paciente);
-  });
-}
+    private void handleMarcarConsulta() {
+    Stage atual = (Stage) buttonMarcarConsulta.getScene().getWindow();
+    Navegacao.trocarTela(atual, "/view/TelaCadastrarConsulta.fxml", "Marcar Consulta", controller -> {
+        ((CadastrarConsultaController) controller).setPaciente(paciente);
+    });
+    }
 
 
     @FXML

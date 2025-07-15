@@ -5,25 +5,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.PacienteController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.PacienteController">
    <children>
-      <Label layoutX="152.0" layoutY="50.0" text="Bem-vindo, ">
+      <Label layoutX="268.0" layoutY="24.0" text="Bem-vindo, ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="labelNomeTitle" layoutX="255.0" layoutY="50.0" text="">
+      <Label fx:id="labelNomeTitle" layoutX="378" layoutY="24.0" text="">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="84.0" layoutY="111.0" text="Nome :">
+      <Label layoutX="78.0" layoutY="111.0" text="Nome :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="354.0" layoutY="111.0" prefHeight="20.0" prefWidth="42.0" text="Idade :">
+      <Label layoutX="498.0" layoutY="111.0" prefHeight="20.0" prefWidth="48.0" text="Idade :">
          <font>
             <Font size="14.0" />
          </font>
@@ -33,7 +32,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelNome" layoutX="152.0" layoutY="111.0" text="" >
+      <Label fx:id="labelNome" layoutX="152.0" layoutY="111.0" text="">
          <font>
             <Font size="14.0" />
          </font>
@@ -48,10 +47,10 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="buttonMedicosDisponiveis" layoutX="63.0" layoutY="235.0" mnemonicParsing="false" text="Consultar médicos disponíveis" />
-      <Button fx:id="buttonMinhasConsultas" layoutX="338.0" layoutY="235.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" text="Minhas Consultas" onAction="#handleMinhasConsultas"/>
-      <Button fx:id="buttonMarcarConsulta" layoutX="63.0" layoutY="280.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="173.0" text="Marcar Consulta" onAction="#handleMarcarConsulta" />
-      <Button fx:id="buttonSair" layoutX="203.0" layoutY="344.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="194.0" text="Sair" onAction="#handleSair"/>
-      <Button fx:id="buttonEditarPerfil" layoutX="337.0" layoutY="280.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" text="Editar Perfil" onAction="#handleEditarPerfil" />
+      <Button fx:id="buttonMedicosDisponiveis" layoutX="90.0" layoutY="236.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Consultar médicos disponíveis" />
+      <Button fx:id="buttonMinhasConsultas" layoutX="498.0" layoutY="235.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Minhas Consultas"  onAction="#handleMinhasConsultas"/>
+      <Button fx:id="buttonMarcarConsulta" layoutX="90.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleMarcarConsulta" prefHeight="27.0" prefWidth="203.0" text="Marcar Consulta" onAction="#handleMarcarConsulta"  />
+      <Button fx:id="buttonSair" layoutX="294.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="27.0" prefWidth="203.0" text="Sair" onAction="#handleSair" />
+      <Button fx:id="buttonEditarPerfil" layoutX="498.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleEditarPerfil" prefHeight="28.0" prefWidth="203.0" text="Editar Perfil" onAction="#handleEditarPerfil" />
    </children>
 </AnchorPane>

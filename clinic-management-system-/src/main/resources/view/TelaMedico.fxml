@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="447.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.MedicoController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.MedicoController">
    <children>
-      <HBox layoutX="29.0" layoutY="14.0" prefHeight="65.0" prefWidth="518.0">
+      <HBox layoutX="209.0" layoutY="-9.0" prefHeight="41.0" prefWidth="594.0">
          <children>
             <Label prefHeight="50.0" prefWidth="199.0" text="Seja Bem-vindo, Dr.">
                <padding>
@@ -31,52 +31,52 @@
             </Label>
          </children>
       </HBox>
-      <Label layoutX="57.0" layoutY="95.0" text="Nome :">
+      <Label layoutX="137.0" layoutY="52.0" text="Nome :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="316.0" layoutY="95.0" text="Especialidade :">
+      <Label layoutX="136.0" layoutY="85.0" text="Especialidade :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="135.0" text="Plano(s) de Saúde : ">
+      <Label layoutX="132.0" layoutY="114.0" text="Plano(s) de Saúde : ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelNome" layoutX="121.0" layoutY="95.0" text="">
+      <Label fx:id="labelNome" layoutX="197.0" layoutY="52.0" prefHeight="20.0" prefWidth="220.0" text="">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelEspecialidade" layoutX="444.0" layoutY="95.0" text="">
+      <Label fx:id="labelEspecialidade" layoutX="246.0" layoutY="85.0" prefHeight="20.0" prefWidth="154.0" text="">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelPlanoSaude" layoutX="206.0" layoutY="135.0" text="">
+      <Label fx:id="labelPlanoSaude" layoutX="271.0" layoutY="114.0" prefHeight="20.0" prefWidth="367.0" text="">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tableConsultasMarcadas" layoutX="3.0" layoutY="217.0" prefHeight="176.0" prefWidth="594.0">
+      <TableView fx:id="tableConsultasMarcadas" layoutX="6.0" layoutY="192.0" prefHeight="248.0" prefWidth="829.0">
         <columns>
           <TableColumn fx:id="columnPaciente" prefWidth="193.60003662109375" text="Paciente" />
-          <TableColumn fx:id="columData" prefWidth="87.20001220703125" text="Data" />
-            <TableColumn fx:id="columnHorario" prefWidth="71.199951171875" text="Horário" />
-            <TableColumn fx:id="columnStatus" prefWidth="97.5999755859375" text="Status" />
-            <TableColumn fx:id="columnVerDescricao" prefWidth="142.39999999999998" text="Ver Descrição" />
+          <TableColumn fx:id="columData" prefWidth="105.833984375" text="Data" />
+            <TableColumn fx:id="columnHorario" prefWidth="54.1671142578125" text="Horário" />
+            <TableColumn fx:id="columnStatus" prefWidth="72.50054931640625" text="Status" />
+            <TableColumn fx:id="columnVerDescricao" prefWidth="404.16949462890625" text="Ver Descrição" />
         </columns>
       </TableView>
-      <Label layoutX="154.0" layoutY="186.0" prefHeight="27.0" prefWidth="323.0" text="Tabela de Consultas Marcadas">
+      <Label layoutX="271.0" layoutY="148.0" prefHeight="27.0" prefWidth="323.0" text="Tabela de Consultas Marcadas">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="buttonAtendido" layoutX="69.0" layoutY="402.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Atendido" />
-      <Button fx:id="buttonSair" layoutX="154.0" layoutY="402.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="30.0" prefWidth="66.0" text="Sair" />
-      <Button fx:id="editarPerfil" layoutX="248.0" layoutY="402.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="Editar Perfil" onAction="#handleEditarPerfil" />
+      <Button fx:id="buttonAtendido" layoutX="107.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" text="Atendido" />
+      <Button fx:id="buttonSair" layoutX="344.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="30.0" prefWidth="154.0" text="Sair" />
+      <Button fx:id="editarPerfil" layoutX="561.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleEditarPerfil" prefHeight="30.0" prefWidth="154.0" text="Editar Perfil" />
    </children>
 </AnchorPane>

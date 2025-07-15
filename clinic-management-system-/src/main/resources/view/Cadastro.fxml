@@ -9,36 +9,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.CadastroController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.CadastroController">
    <children>
-      <Label layoutX="53.0" layoutY="60.0" prefHeight="36.0" prefWidth="134.0" text="Cadastro">
+      <Label layoutX="341.0" layoutY="23.0" prefHeight="43.0" prefWidth="143.0" text="Cadastro">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="118.0" text="Nome :">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="53.0" layoutY="173.0" text="Senha :">
+      <Label layoutX="308.0" layoutY="94.0" text="Nome :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="221.0" text="Tipo de Usuário : ">
+      <Label layoutX="308.0" layoutY="135.0" text="Senha :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="nomeUser" layoutX="113.0" layoutY="116.0" promptText="Digite o seu nome" />
-      <RadioButton fx:id="radioMedico" layoutX="176.0" layoutY="223.0" mnemonicParsing="false" onAction="#atualizarCampos" text="Médico">
+      <Label layoutX="297.0" layoutY="173.0" text="Tipo de Usuário : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomeUser" layoutX="391.0" layoutY="91.0" promptText="Digite o seu nome" />
+      <RadioButton fx:id="radioMedico" layoutX="413.0" layoutY="174.0" mnemonicParsing="false" onAction="#atualizarCampos" text="Médico">
          <toggleGroup>
             <ToggleGroup fx:id="grupoTipo" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioPaciente" layoutX="286.0" layoutY="223.0" mnemonicParsing="false" onAction="#atualizarCampos" text="Paciente" toggleGroup="$grupoTipo" />
-      <AnchorPane fx:id="campoPaciente" layoutY="248.0" prefHeight="36.0" prefWidth="600.0" visible="false">
+      <RadioButton fx:id="radioPaciente" layoutX="497.0" layoutY="174.0" mnemonicParsing="false" onAction="#atualizarCampos" text="Paciente" toggleGroup="$grupoTipo" />
+      <AnchorPane fx:id="campoPaciente" layoutX="107.0" layoutY="203.0" prefHeight="68.0" prefWidth="623.0" visible="false">
          <children>
             <Label layoutX="53.0" layoutY="10.0" text="Idade :">
                <font>
@@ -56,10 +56,10 @@
                   <ToggleGroup fx:id="grupoPlano" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="pacienteNaotemPlano" layoutX="421.0" layoutY="11.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="80.0" text="Não tenho" toggleGroup="$grupoPlano" />
+            <RadioButton fx:id="pacienteNaotemPlano" layoutX="421.0" layoutY="11.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="170.0" text="Não tenho" toggleGroup="$grupoPlano" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="campoMedico" layoutX="-4.0" layoutY="252.0" managed="false" prefHeight="140.0" prefWidth="600.0" visible="false">
+      <AnchorPane fx:id="campoMedico" layoutX="296.0" layoutY="202.0" managed="false" prefHeight="2.0" prefWidth="0.0" visible="false">
          <children>
             <Label layoutX="66.0" layoutY="22.0" text="Plano de Saúde : ">
                <font>
@@ -75,9 +75,9 @@
             <TextField fx:id="especialidadeMedico" layoutX="185.0" layoutY="67.0" />
          </children>
       </AnchorPane>
-      <PasswordField fx:id="senhaUser" layoutX="113.0" layoutY="171.0" promptText="Digite sua senha" />
-      <Button fx:id="buttonCadastrar" layoutX="206.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleCadastrar" text="Cadastrar" />
-      <Label fx:id="labelCadastrado" layoutX="23.0" layoutY="319.0" prefHeight="18.0" prefWidth="309.0" />
-      <Button fx:id="buttonSair" layoutX="302.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleSair" text="Voltar" />
+      <PasswordField fx:id="senhaUser" layoutX="391.0" layoutY="132.0" promptText="Digite sua senha" />
+      <Button fx:id="buttonCadastrar" layoutX="284.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleCadastrar" prefHeight="27.0" prefWidth="143.0" text="Cadastrar" />
+      <Label fx:id="labelCadastrado" layoutX="284.0" layoutY="241.0" prefHeight="18.0" prefWidth="309.0" />
+      <Button fx:id="buttonSair" layoutX="447.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="27.0" prefWidth="143.0" text="Voltar" />
    </children>
 </AnchorPane>
