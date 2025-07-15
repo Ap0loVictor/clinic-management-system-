@@ -6,6 +6,7 @@ import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
 import clinicamed.userfactory.MedicoFactory;
 import clinicamed.userfactory.PacienteFactory;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,9 +47,23 @@ public class CadastroController extends Basecontroller implements Initializable 
     private Button buttonCadastrar;
     @FXML
     private Button buttonSair;
+    @FXML private ComboBox<String> comboPlanos; // Novo ComboBox
+    @FXML private Label labelQualPlano;
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //ainda sera implementado
+        // Carregar planos disponíveis no ComboBox
+        comboPlanos.setItems(FXCollections.observableArrayList(PacienteDao.getPlanosDisponiveis()));
+        
+        // Listener para mostrar/ocultar campo do plano
+        pacienteTemPlano.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            comboPlanos.setVisible(newVal);
+            labelQualPlano.setVisible(newVal);
+            
+            if(newVal) {
+                comboPlanos.requestFocus();
+            }
+        });
     }
     public void atualizarCampos() {
         boolean isPaciente = radioPaciente.isSelected();
@@ -57,27 +72,67 @@ public class CadastroController extends Basecontroller implements Initializable 
         campoMedico.setVisible(!isPaciente);
         campoMedico.setManaged(!isPaciente);
     }
-    public void handleCadastrar() {
-        String nome = nomeUser.getText();
-        String senha = senhaUser.getText();
+       public void handleCadastrar() {
+        String nome = nomeUser.getText().trim();
+        String senha = senhaUser.getText().trim();
+        
+        // Validação básica de campos
+        if(nome.isEmpty() || senha.isEmpty()) {
+            labelCadastrado.setText("Preencha nome e senha!");
+            return;
+        }
+        
         if(radioPaciente.isSelected()) {
             Paciente paciente = criarPaciente(nome, senha);
-            labelCadastrado.setText("Paciente cadastrado com sucesso!");
-            abrirTelaPaciente(paciente);
+            if(paciente != null) {
+                labelCadastrado.setText("Paciente cadastrado com sucesso!");
+                abrirTelaPaciente(paciente);
+            }
         } else if (radioMedico.isSelected()) {
             Medico medico = criarMedico(nome, senha);
-            labelCadastrado.setText("Médico cadastrado com sucesso!");
-            abrirTelaMedico(medico);
+            if(medico != null) {
+                labelCadastrado.setText("Médico cadastrado com sucesso!");
+                abrirTelaMedico(medico);
+            }
         } else {
-            labelCadastrado.setText("Preencha todos os campos corretamente.");
+            labelCadastrado.setText("Selecione o tipo de usuário.");
         }
     }
     public Paciente criarPaciente(String nome, String senha) {
-        int idade = Integer.parseInt(idadeUser.getText());
-        boolean temPlano = pacienteTemPlano.isSelected();
-        Paciente paciente = PacienteFactory.criarFromController(nome, senha, idade, temPlano);
+        // Validar idade
+        int idade;
+        try {
+            idade = Integer.parseInt(idadeUser.getText());
+            if(idade < 0 || idade > 120) {
+                mostrarAlerta("Idade inválida", "A idade deve ser entre 0 e 120 anos");
+                return null;
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Idade inválida", "Digite um número válido para idade");
+            return null;
+        }
+        
+        String plano;
+        if (pacienteTemPlano.isSelected()) {
+            plano = comboPlanos.getValue();
+            if(plano == null || plano.isEmpty()) {
+                mostrarAlerta("Plano inválido", "Selecione um plano de saúde");
+                return null;
+            }
+        } else {
+            plano = "Não tenho";
+        }
+        
+        Paciente paciente = PacienteFactory.criarFromController(nome, senha, idade, plano);
         PacienteDao.salvarPaciente(paciente);
         return paciente;
+    }
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
     public Medico criarMedico(String nome, String senha) {
             String especialidade = especialidadeMedico.getText();

@@ -1,11 +1,11 @@
 package clinicamed.model;
 
 public class Medico extends Usuario {
-    private String especialdiade;
+    private String especialidade;
     private String planoSaude;
     public Medico(String nome, String senha, String especialdiade, String planoSaude) {
         super(nome, senha);
-        this.especialdiade = especialdiade;
+        this.especialidade = especialdiade;
         this.planoSaude = planoSaude;
     }
 
@@ -18,8 +18,8 @@ public class Medico extends Usuario {
     public void setNome(String nome) {
         super.setNome(nome);
     }
-    public void setEspecialdiade(String especialdiade) {
-        this.especialdiade = especialdiade;
+    public void setEspecialidade(String especialdiade) {
+        this.especialidade = especialdiade;
     }
 
     public void setPlanoSaude(String planoSaude) {
@@ -35,8 +35,8 @@ public class Medico extends Usuario {
         return super.getNome();
     }
 
-    public String getEspecialdiade() {
-        return especialdiade;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
     public String getPlanoSaude() {
@@ -46,7 +46,7 @@ public class Medico extends Usuario {
     @Override
     public String toString() {
         return "Medico{" +
-                "especialdiade='" + especialdiade + '\'' +
+                "especialidade='" + especialidade + '\'' +
                 ", planoSaude='" + planoSaude + '\'' +
                 ", nome='" + nome + '\'' +
                 ", senha='" + senha + '\'' +
