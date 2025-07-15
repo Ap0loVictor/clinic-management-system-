@@ -37,6 +37,7 @@ public class PacienteController implements Initializable {
     @FXML
     private Button buttonSair;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Inicialização, se necessário
@@ -71,6 +72,13 @@ public class PacienteController implements Initializable {
         Stage stageAtual = (Stage) buttonEditarPerfil.getScene().getWindow();
         Navegacao.trocarTela(stageAtual, "/view/EditarPerfil.fxml", "Editar Perfil", controller -> {
             ((EditarController) controller).setUsuario(paciente);
+        });
+    }
+    @FXML
+    private void handleConsultarMedicos() {
+        Stage stageAtual = (Stage) buttonMedicosDisponiveis.getScene().getWindow();
+        Navegacao.trocarTela(stageAtual, "/view/ConsultMedics.fxml", "Médicos disponíveis", controller -> {
+            ((ConsultarMedicosController) controller).setPaciente(paciente);
         });
     }
     @FXML
