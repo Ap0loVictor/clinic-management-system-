@@ -1,10 +1,15 @@
 // AtenderConsultaController.java
 package clinicamed.controller;
 
+import java.io.IOException;
+
 import clinicamed.dao.ConsultaDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Paciente;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -38,7 +43,23 @@ public class AtenderConsultaController {
         consulta.setStatus("Concluída");
         ConsultaDao.atualizarConsulta(consulta);
         ConsultaDao.promoverPacienteDaListaEspera(consulta.getNomeMedico(), consulta.getData());
-        mostrarAlerta("Consulta finalizada com sucesso.");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ResultadoConsulta.fxml"));
+            Parent root = loader.load();
+
+            ResultadoConsultaController controller = loader.getController();
+            controller.setDados(consulta, paciente);
+
+            Stage resultadoStage = new Stage();
+            resultadoStage.setTitle("Resultado da Consulta");
+            resultadoStage.setScene(new Scene(root));
+            resultadoStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
         Stage stage = (Stage) botaoFinalizar.getScene().getWindow();
         stage.close();
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="clinicamed.controller.ResultadoConsultaController"
+            prefWidth="450" prefHeight="300">
+    <children>
+        <Label layoutX="140" layoutY="20" text="Resumo da Consulta">
+            <font>
+                <Font size="18"/>
+            </font>
+        </Label>
+
+        <Label layoutX="30" layoutY="70" text="Paciente:"/>
+        <Label fx:id="labelNomePaciente" layoutX="140" layoutY="70"/>
+
+        <Label layoutX="30" layoutY="100" text="Médico:"/>
+        <Label fx:id="labelNomeMedico" layoutX="140" layoutY="100"/>
+
+        <Label layoutX="30" layoutY="130" text="Data:"/>
+        <Label fx:id="labelData" layoutX="140" layoutY="130"/>
+
+        <Label layoutX="30" layoutY="160" text="Plano de Saúde:"/>
+        <Label fx:id="labelPlano" layoutX="140" layoutY="160"/>
+
+        <Label layoutX="30" layoutY="190" text="Valor:"/>
+        <Label fx:id="labelValor" layoutX="140" layoutY="190" wrapText="true" maxWidth="250"/>
+
+        <Button layoutX="160" layoutY="240" text="Fechar" onAction="#handleFechar" prefWidth="120"/>
+    </children>
+</AnchorPane>

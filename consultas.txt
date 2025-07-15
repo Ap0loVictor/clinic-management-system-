@@ -2,7 +2,7 @@ Apolo	Apolo	09/07/2022	09:00	Marcada	Virose
 Apolo	Adriano	10/10/2010	09:00	Marcada	Gripe
 Apolo	Tulio	20/10/2003	06:00	Marcada	Febre 
 Apolo	Facundo	20/09/2001	08:05	Marcada	Dor no Corpo
-Apolo	Apolo	10/10/2010	09:00	Concluída	o
+Apolo	Apolo	10/10/2010	09:00	Concluída	xd
 Apolo	Facundo	10/10/2010	07:00	Concluída	Muito Melhor
 Apolo	Facundo	10/10/2010	14:13	Marcada	Raio-X
-Apolo	Façanha	10/10/2010	09:00	Marcada	Meu filho
+Apolo	Façanha	10/10/2010	09:00	Concluída	xd
