@@ -5,6 +5,8 @@ import clinicamed.userfactory.MedicoFactory;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MedicoDao {
     private static final String CAMINHO_ARQ_MEDICO = "medicos.txt";
@@ -21,8 +23,49 @@ public class MedicoDao {
             e.printStackTrace();
         }
     }
-    
-    public static ArrayList<Medico> carregarMedicos() {
+
+    public static ArrayList<Medico> buscarPorPlano(boolean temPlanoPaciente) {
+    ArrayList<Medico> medicos = carregarMedico();
+    ArrayList<Medico> filtrados = new ArrayList<>();
+
+    for (Medico m : medicos) {
+        if (!temPlanoPaciente) {
+            filtrados.add(m);
+        } else {
+            if (m.getPlanoSaude() != null && !m.getPlanoSaude().equalsIgnoreCase("Não")) {
+                filtrados.add(m);
+            }
+        }
+    }
+    return filtrados;
+}
+
+public static Set<String> listarEspecialidades() {
+    Set<String> especialidades = new HashSet<>();
+    for (Medico m : carregarMedico()) {
+        especialidades.add(m.getEspecialdiade());
+    }
+    return especialidades;
+}
+
+public static ArrayList<Medico> buscarPorEspecialidadeEPlano(String especialidade, boolean temPlanoPaciente) {
+    ArrayList<Medico> medicos = carregarMedico();
+    ArrayList<Medico> filtrados = new ArrayList<>();
+
+    for (Medico m : medicos) {
+        if (!m.getEspecialdiade().equalsIgnoreCase(especialidade)) continue;
+
+        if (!temPlanoPaciente || (m.getPlanoSaude() != null && !m.getPlanoSaude().equalsIgnoreCase("Não"))) {
+            filtrados.add(m);
+        }
+    }
+    return filtrados;
+}
+
+
+
+    public static ArrayList<Medico> carregarMedico() {
+
         ArrayList<Medico> medicos = new ArrayList<>();
         File arquivo = new File(CAMINHO_ARQ_MEDICO);
         

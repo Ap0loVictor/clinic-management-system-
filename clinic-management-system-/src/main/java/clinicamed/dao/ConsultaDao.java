@@ -1,6 +1,7 @@
 package clinicamed.dao;
 
 import clinicamed.model.Consulta;
+import clinicamed.model.Medico;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -48,7 +49,45 @@ public class ConsultaDao {
 
         return consultas;
     }
-    public static List<Consulta> buscarPorPaciente(String nomePaciente) {
+
+    public static int contarConsultasPorData(Medico medico, String data) {
+        int contador = 0;
+        List<Consulta> consultas = carregarConsultas();
+
+        for (Consulta c : consultas) {
+            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data) && !c.getStatus().equals("Lista de Espera")) {
+                contador++;
+            }
+        }
+
+        return contador;
+    }
+
+    public static void atualizarConsulta(Consulta consultaAtualizada) {
+        List<Consulta> consultas = carregarConsultas();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTA))) {
+            for (Consulta c : consultas) {
+                if (c.getNomeMedico().equals(consultaAtualizada.getNomeMedico()) &&
+                    c.getNomePaciente().equals(consultaAtualizada.getNomePaciente()) &&
+                    c.getData().equals(consultaAtualizada.getData()) &&
+                    c.getHorario().equals(consultaAtualizada.getHorario())) {
+                    c = consultaAtualizada; // atualiza a consulta
+                }
+
+                String linha = c.getNomeMedico() + "\t" +
+                               c.getNomePaciente() + "\t" +
+                               c.getData() + "\t" +
+                               c.getHorario() + "\t" +
+                               c.getStatus() + "\t" +
+                               c.getDescricao();
+                writer.write(linha);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    /*public static List<Consulta> buscarPorPaciente(String nomePaciente) {
         List<Consulta> todas = carregarConsultas(); // carrega todas do JSON ou banco
         List<Consulta> filtradas = new ArrayList<>();
 
@@ -58,6 +97,6 @@ public class ConsultaDao {
             }
         }
 
-        return filtradas;
+        return filtradas;*/
     }
 }

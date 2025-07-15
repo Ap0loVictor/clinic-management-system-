@@ -78,4 +78,14 @@ public static void atualizarPaciente(Paciente pacienteAtualizado) {
         }
         return pacientes;
     }
+    public static Paciente buscarPorNome(String nome) {
+    ArrayList<Paciente> pacientes = carregarPacientes();
+    for (Paciente p : pacientes) {
+        if (p.getNome().equalsIgnoreCase(nome)) {
+            return p;
+        }
+    }
+    return null; 
+}
+
 }

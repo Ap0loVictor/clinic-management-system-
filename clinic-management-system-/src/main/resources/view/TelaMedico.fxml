@@ -75,8 +75,20 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="buttonAtendido" layoutX="107.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" text="Atendido" />
+
+
+      <HBox layoutX="154.0" layoutY="402.0" spacing="15.0" alignment="CENTER">
+         <children>
+            <Button fx:id="botaoAtender" text="Atender" onAction="#handleAtenderConsulta" prefWidth="80.0" />
+            <Button fx:id="editarPerfil" text="Editar Perfil" onAction="#handleEditarPerfil" prefWidth="100.0" />
+            <Button fx:id="buttonSair" text="Sair" onAction="#handleSair" prefWidth="60.0" />
+         </children>
+      </HBox>
+
+  <!-- <Button fx:id="buttonAtendido" layoutX="107.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" text="Atendido" /> 
+      
       <Button fx:id="buttonSair" layoutX="344.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="30.0" prefWidth="154.0" text="Sair" />
-      <Button fx:id="editarPerfil" layoutX="561.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleEditarPerfil" prefHeight="30.0" prefWidth="154.0" text="Editar Perfil" />
+      <Button fx:id="editarPerfil" layoutX="561.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleEditarPerfil" prefHeight="30.0" prefWidth="154.0" text="Editar Perfil" /> -->
+
    </children>
 </AnchorPane>
