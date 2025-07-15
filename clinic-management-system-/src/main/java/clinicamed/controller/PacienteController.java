@@ -63,7 +63,7 @@ public class PacienteController implements Initializable {
     }
 
     private void mostrarPlanoSaude() {
-        labelPlanoSaude.setText(paciente.isTemPlano() ? "Sim" : "Não");
+        labelPlanoSaude.setText(paciente.getPlanoSaude());
     }
 
     @FXML
@@ -73,13 +73,6 @@ public class PacienteController implements Initializable {
             ((EditarController) controller).setUsuario(paciente);
         });
     }
-
-    // private void handleMinhasConsultas() {
-    //     Stage atual = (Stage) buttonMinhasConsultas.getScene().getWindow();
-    //     Navegacao.trocarTela(atual, "/view/TelaMinhasConsultas.fxml", "Minhas Consultas", controller -> {
-    //         ((MinhasConsultasController) controller).setPaciente(consulta);
-    //     });
-    // }
 
     @FXML
     private void handleMarcarConsulta() {

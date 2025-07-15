@@ -2,12 +2,12 @@ package clinicamed.model;
 
 public class Paciente extends Usuario{
     private int idade;
-    private boolean temPlano;
+    private String planoSaude;
 
-    public Paciente(String nome, String senha, int idade, boolean temPlano) {
+    public Paciente(String nome, String senha, int idade, String planoSaude) {
         super(nome, senha);
         this.idade = idade;
-        this.temPlano = temPlano;
+        this.planoSaude = planoSaude;
     }
 
     @Override
@@ -20,12 +20,11 @@ public class Paciente extends Usuario{
         super.setSenha(senha);
     }
 
-    public void setTemPlano(boolean temPlano) {
-        this.temPlano = temPlano;
+    public String getPlanoSaude() {
+        return planoSaude;
     }
-
-    public boolean isTemPlano() {
-        return temPlano;
+    public void setPlanoSaude(String planoSaude) {
+        this.planoSaude = planoSaude;
     }
 
     public void setIdade(int idade) {
@@ -49,7 +48,7 @@ public class Paciente extends Usuario{
     @Override
     public String toString() {
         return "Paciente{" +
-                "temPlano=" + temPlano +
+                "planoSaude=" + planoSaude +
                 ", idade=" + idade +
                 ", senha='" + senha + '\'' +
                 ", nome='" + nome + '\'' +
