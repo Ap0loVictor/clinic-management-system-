@@ -27,7 +27,7 @@ public class CadastrarConsultaController extends Basecontroller implements Initi
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
-        this.nomePaciente = nomePaciente;
+        nomePaciente = paciente.getNome();
         campoPaciente.setText(nomePaciente);
         campoPaciente.setEditable(false); 
     }
@@ -50,8 +50,7 @@ public class CadastrarConsultaController extends Basecontroller implements Initi
 
         Consulta consulta = new Consulta(medico, paciente, data, horario, status, descricao);
         ConsultaDao.salvarConsulta(consulta);
-        Stage stageAtual = (Stage) campoMedico.getScene().getWindow();
-        stageAtual.close();
+        handleVoltar();
     }
 
     @Override
