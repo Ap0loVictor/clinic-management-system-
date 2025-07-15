@@ -2,7 +2,14 @@ package clinicamed.dao;
 
 import clinicamed.model.Consulta;
 
+import clinicamed.model.Medico;
+import javafx.scene.control.Alert;
+
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,3 +116,81 @@ public class ConsultaDao {
         return consultas;
         }
 }
+
+
+    }
+    public static void removerConsultaDoArq(Consulta consulta) {
+        Path path = Paths.get("consultas.txt");
+        try {
+            List<String> linhas = Files.readAllLines(path);
+            List<String> novasLinhas = new ArrayList<>();
+            for (String linha : linhas) {
+                String[] partes = linha.split("\t");
+                if(partes.length == 6) {
+                    String nomeMedico = partes[0].trim();
+                    String nomePaciente = partes[1].trim();
+                    String data = partes[2].trim();
+                    String horario = partes[3].trim();
+                    String status = partes[4].trim();
+                    String descricao = partes[5].trim();
+                    boolean eigual = nomeMedico.equals(consulta.getNomeMedico()) &&
+                            nomePaciente.equals(consulta.getNomePaciente()) &&
+                            data.equals(consulta.getData()) && horario.equals(consulta.getHorario()) &&
+                            status.equals(consulta.getStatus()) && descricao.equals(consulta.getDescricao());
+                    if(!eigual) {
+                        novasLinhas.add(linha);
+                    }
+                }
+            }
+            Files.write(path, novasLinhas);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erro ao cancelar consulta");
+            alert.setContentText("Não foi possível atualizar o arquivo de consultas.");
+            alert.showAndWait();
+        }
+    }
+    public static void promoverPacienteDaListaEspera(String medico, String data) {
+        List<String> linhas = new ArrayList<>();
+        boolean encontrado = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("lista_espera.txt"))) {
+            String linha;
+
+            while ((linha = reader.readLine()) != null) {
+                String[] partes = linha.split("\t");
+                if (partes.length < 6) continue;
+
+                String medicoEspera = partes[0];
+                String paciente = partes[1];
+                String dataEspera = partes[2];
+                String horario = partes[3];
+                String status = partes[4];
+                String descricao = partes[5];
+
+                if (!encontrado && medicoEspera.equals(medico) && dataEspera.equals(data)) {
+                    // Promover para consultas.txt
+                    Consulta novaConsulta = new Consulta(medico, paciente, data, horario, "Marcada", descricao);
+                    salvarConsulta(novaConsulta);
+                    encontrado = true; // só promove o primeiro da fila
+                } else {
+                    linhas.add(linha); // mantém na lista os demais
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Reescreve a lista_espera.txt sem a linha promovida
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("lista_espera.txt"))) {
+            for (String l : linhas) {
+                writer.write(l);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+

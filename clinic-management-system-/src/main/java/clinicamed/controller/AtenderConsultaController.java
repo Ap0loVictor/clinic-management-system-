@@ -37,7 +37,7 @@ public class AtenderConsultaController {
         // consulta.setDescricao(relatorio);
         consulta.setStatus("Concluída");
         ConsultaDao.atualizarConsulta(consulta);
-
+        ConsultaDao.promoverPacienteDaListaEspera(consulta.getNomeMedico(), consulta.getData());
         mostrarAlerta("Consulta finalizada com sucesso.");
         Stage stage = (Stage) botaoFinalizar.getScene().getWindow();
         stage.close();

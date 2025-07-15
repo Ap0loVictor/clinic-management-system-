@@ -2,8 +2,10 @@ Guilherme	2209	Cardiologista	Hapvida
 Bruno	1709	Pediatria	Unimed
 Felipe	7878	Ginecologista	Hapvida
 Rafael	1213	Pediatria	Hapvida
-Apolo	123	O melhor	Tenho
+Apolo	123	Pediatria	Unimed
 Apolor	1234	Dentista	DosBons
 Teste1	1	teste	teste
 aaaaaaaaa	123	sim	sim
 AgoraSim	123	SaberMuito	DosBons
+JanJanJan	123	Cardiologista	Bradesco Saúde
+Paulo Henrique maligno	123	maldade	Bradesco Saúde

@@ -9,15 +9,25 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,7 +44,12 @@ public class MinhasConsultasController extends Basecontroller implements Initial
     @FXML private TableColumn<Consulta, String> status;
     @FXML private TableColumn<Consulta, String> horario;
     @FXML private TableColumn<Consulta, String> data;
+
     @FXML private TableColumn<Consulta, String> avaliacao;
+
+
+    @FXML private TableColumn<Consulta, String> descricao;
+    @FXML private Button cancelarConsulta;
 
     @Override
     protected Button getBotaoSair() {
@@ -114,4 +129,23 @@ public class MinhasConsultasController extends Basecontroller implements Initial
             ((PacienteController) controller).setPaciente(paciente);
         });
     }
+
 }
+
+    @FXML
+    public void handleCancelarConsulta() {
+        Consulta consultaSelecionada = consultas.getSelectionModel().getSelectedItem();
+        if(consultaSelecionada != null) {
+            consultas.getItems().remove(consultaSelecionada);
+            ConsultaDao.removerConsultaDoArq(consultaSelecionada);
+            ConsultaDao.promoverPacienteDaListaEspera(consultaSelecionada.getNomeMedico(), consultaSelecionada.getData());
+            setPaciente(paciente);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erro ao cancelar consulta");
+            alert.setContentText("Por favor, selecione uma consulta para cancelar.");
+            alert.showAndWait();
+        }
+    }
+}
+
