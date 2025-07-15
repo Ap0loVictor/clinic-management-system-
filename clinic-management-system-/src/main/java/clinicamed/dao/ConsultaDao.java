@@ -54,11 +54,37 @@ public class ConsultaDao {
         List<Consulta> consultas = carregarConsultas();
 
         for (Consulta c : consultas) {
-            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data)) {
+            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data) && !c.getStatus().equals("Lista de Espera")) {
                 contador++;
             }
         }
 
         return contador;
+    }
+
+    public static void atualizarConsulta(Consulta consultaAtualizada) {
+        List<Consulta> consultas = carregarConsultas();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTA))) {
+            for (Consulta c : consultas) {
+                if (c.getNomeMedico().equals(consultaAtualizada.getNomeMedico()) &&
+                    c.getNomePaciente().equals(consultaAtualizada.getNomePaciente()) &&
+                    c.getData().equals(consultaAtualizada.getData()) &&
+                    c.getHorario().equals(consultaAtualizada.getHorario())) {
+                    c = consultaAtualizada; // atualiza a consulta
+                }
+
+                String linha = c.getNomeMedico() + "\t" +
+                               c.getNomePaciente() + "\t" +
+                               c.getData() + "\t" +
+                               c.getHorario() + "\t" +
+                               c.getStatus() + "\t" +
+                               c.getDescricao();
+                writer.write(linha);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
