@@ -1,8 +1,10 @@
 package clinicamed.dao;
 
 import clinicamed.model.Consulta;
+
 import clinicamed.model.Medico;
 import javafx.scene.control.Alert;
+
 
 import java.io.*;
 import java.nio.file.Files;
@@ -12,85 +14,109 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultaDao {
-    private static final String CAMINHO_ARQ_CONSULTA = "consultas.txt";
+    private static final String CAMINHO_ARQ_CONSULTAS = "consultas.txt";
 
     public static void salvarConsulta(Consulta consulta) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTA, true))) {
-            String linha = consulta.getNomeMedico() + "\t" +
-                           consulta.getNomePaciente() + "\t" +
-                           consulta.getData() + "\t" +
-                           consulta.getHorario() + "\t" +
-                           consulta.getStatus() + "\t" +
-                           consulta.getDescricao();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTAS, true))) {
+            String linha = consulta.getNomePaciente() + "\t" + 
+                          consulta.getNomeMedico() + "\t" + 
+                          consulta.getData() + "\t" + 
+                          consulta.getHorario() + "\t" + 
+                          consulta.getStatus() + "\t" + 
+                          consulta.getDescricao() + "\t" + 
+                          consulta.getAvaliacao() + "\t" + 
+                          consulta.getComentarioAvaliacao();
             writer.write(linha);
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public static ArrayList<Consulta> carregarConsultas() {
-        ArrayList<Consulta> consultas = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(CAMINHO_ARQ_CONSULTA))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                String[] dados = linha.split("\t");
-                if (dados.length >= 6) {
-                    String nomeMedico = dados[0];
-                    String nomePaciente = dados[1];
-                    String data = dados[2];
-                    String horario = dados[3];
-                    String status = dados[4];
-                    String descricao = dados[5];
-
-                    Consulta consulta = new Consulta(nomeMedico, nomePaciente, data, horario, status, descricao);
-                    consultas.add(consulta);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return consultas;
-    }
-
-    public static int contarConsultasPorData(Medico medico, String data) {
-        int contador = 0;
-        List<Consulta> consultas = carregarConsultas();
-
-        for (Consulta c : consultas) {
-            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data) && !c.getStatus().equals("Lista de Espera")) {
-                contador++;
-            }
-        }
-
-        return contador;
-    }
-
-    public static void atualizarConsulta(Consulta consultaAtualizada) {
-        List<Consulta> consultas = carregarConsultas();
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTA))) {
+    private static void salvarTodasConsultas(List<Consulta> consultas) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_CONSULTAS))) {
             for (Consulta c : consultas) {
-                if (c.getNomeMedico().equals(consultaAtualizada.getNomeMedico()) &&
-                    c.getNomePaciente().equals(consultaAtualizada.getNomePaciente()) &&
-                    c.getData().equals(consultaAtualizada.getData()) &&
-                    c.getHorario().equals(consultaAtualizada.getHorario())) {
-                    c = consultaAtualizada; // atualiza a consulta
-                }
-
-                String linha = c.getNomeMedico() + "\t" +
-                               c.getNomePaciente() + "\t" +
-                               c.getData() + "\t" +
-                               c.getHorario() + "\t" +
-                               c.getStatus() + "\t" +
-                               c.getDescricao();
+                String linha = String.join("\t",
+                    c.getNomePaciente(),
+                    c.getNomeMedico(),
+                    c.getData(),
+                    c.getHorario(),
+                    c.getStatus(),
+                    c.getDescricao(),  // Descrição permanece inalterada
+                    String.valueOf(c.getAvaliacao()),
+                    c.getComentarioAvaliacao()
+                );
                 writer.write(linha);
                 writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void atualizarConsulta(Consulta consultaAtualizada) {
+        List<Consulta> todasConsultas = carregarConsultas();
+        
+        for (int i = 0; i < todasConsultas.size(); i++) {
+            Consulta c = todasConsultas.get(i);
+            if (c.getNomePaciente().equals(consultaAtualizada.getNomePaciente()) &&
+                c.getNomeMedico().equals(consultaAtualizada.getNomeMedico()) &&
+                c.getData().equals(consultaAtualizada.getData()) &&
+                c.getHorario().equals(consultaAtualizada.getHorario())) {
+                
+                // Atualiza apenas os campos que podem ser modificados:
+                c.setStatus(consultaAtualizada.getStatus());
+                c.setAvaliacao(consultaAtualizada.getAvaliacao());
+                c.setComentarioAvaliacao(consultaAtualizada.getComentarioAvaliacao());
+                break;
+            }
+        }
+        
+        salvarTodasConsultas(todasConsultas);
+        }
+    
+    
+    public static List<Consulta> carregarConsultas() {
+        List<Consulta> consultas = new ArrayList<>();
+        File arquivo = new File(CAMINHO_ARQ_CONSULTAS);
+        
+        if (!arquivo.exists()) {
+            return consultas;
+        }
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(CAMINHO_ARQ_CONSULTAS))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                String[] dados = linha.split("\t");
+                
+                // Consulta básica requer 6 campos
+                if (dados.length < 6) continue;
+                
+                Consulta consulta = new Consulta(
+                    dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]
+                );
+                
+                // Se tiver avaliação (campo 7)
+                if (dados.length >= 7) {
+                    try {
+                        consulta.setAvaliacao(Integer.parseInt(dados[6]));
+                    } catch (NumberFormatException e) {
+                        consulta.setAvaliacao(0);
+                    }
+                }
+                
+                // Se tiver comentário (campo 8)
+                if (dados.length >= 8) {
+                    consulta.setComentarioAvaliacao(dados[7]);
+                }
+                
+                consultas.add(consulta);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return consultas;
+        }
+}
+
 
     }
     public static void removerConsultaDoArq(Consulta consulta) {
@@ -167,3 +193,4 @@ public class ConsultaDao {
         }
     }
 }
+
