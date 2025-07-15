@@ -72,43 +72,13 @@ public class MinhasConsultasController extends Basecontroller implements Initial
         Consulta consultaSelecionada = consultas.getSelectionModel().getSelectedItem();
         if(consultaSelecionada != null) {
             consultas.getItems().remove(consultaSelecionada);
-            removerConsultaDoArq(consultaSelecionada);
+            ConsultaDao.removerConsultaDoArq(consultaSelecionada);
+            ConsultaDao.promoverPacienteDaListaEspera(consultaSelecionada.getNomeMedico(), consultaSelecionada.getData());
+            setPaciente(paciente);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Erro ao cancelar consulta");
             alert.setContentText("Por favor, selecione uma consulta para cancelar.");
-            alert.showAndWait();
-        }
-    }
-    public void removerConsultaDoArq(Consulta consulta) {
-        Path path = Paths.get("consultas.txt");
-        try {
-            List<String> linhas = Files.readAllLines(path);
-            List<String> novasLinhas = new ArrayList<>();
-            for (String linha : linhas) {
-                String[] partes = linha.split("\t");
-                if(partes.length == 6) {
-                    String nomeMedico = partes[0].trim();
-                    String nomePaciente = partes[1].trim();
-                    String data = partes[2].trim();
-                    String horario = partes[3].trim();
-                    String status = partes[4].trim();
-                    String descricao = partes[5].trim();
-                    boolean eigual = nomeMedico.equals(consulta.getNomeMedico()) &&
-                                     nomePaciente.equals(consulta.getNomePaciente()) &&
-                                     data.equals(consulta.getData()) && horario.equals(consulta.getHorario()) &&
-                                     status.equals(consulta.getStatus()) && descricao.equals(consulta.getDescricao());
-                    if(!eigual) {
-                        novasLinhas.add(linha);
-                    }
-                }
-            }
-            Files.write(path, novasLinhas);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Erro ao cancelar consulta");
-            alert.setContentText("Não foi possível atualizar o arquivo de consultas.");
             alert.showAndWait();
         }
     }

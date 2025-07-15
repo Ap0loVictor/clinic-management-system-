@@ -5,11 +5,15 @@ import clinicamed.dao.MedicoDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -70,7 +74,8 @@ public class CadastrarConsultaController implements Initializable {
             .orElse(null);
 
         if (medicoSelecionado == null || ConsultaDao.contarConsultasPorData(medicoSelecionado, data) >= 3) {
-            mostrarAlerta("Este médico já está com a agenda cheia nesta data.");
+            adicionarListaEspera(paciente.getNome(), nomeMedico, data, horario, "Em espera", descricao);
+            mostrarAlerta("Você foi adicionado à lista de espera pois o médico já está com a agenda cheia nesta data.");
             return;
         }
 
@@ -80,7 +85,16 @@ public class CadastrarConsultaController implements Initializable {
         mostrarAlerta("Consulta marcada com sucesso!");
         handleVoltar();
     }
+    public void adicionarListaEspera(String paciente, String medico, String data, String horario, String status, String descricao) {
+        String linha = medico+ "\t" + paciente + "\t" + data + "\t" + horario + "\t" + status + "\t" + descricao;
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("lista_espera.txt", true))) {
+            writer.write(linha);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void mostrarAlerta(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -89,9 +103,11 @@ public class CadastrarConsultaController implements Initializable {
     }
 
     @FXML
-    private void handleVoltar() {
-        Stage stage = (Stage) buttonVoltar.getScene().getWindow();
-        stage.close();
+    public void handleVoltar() {
+        Stage atual = (Stage) buttonVoltar.getScene().getWindow();
+        Navegacao.trocarTela(atual, "/view/TelaPaciente.fxml", "Área do Paciente", controller -> {
+            ((PacienteController) controller).setPaciente(paciente);
+        });
     }
 
     @Override
