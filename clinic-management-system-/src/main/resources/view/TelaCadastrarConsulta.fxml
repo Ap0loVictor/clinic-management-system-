@@ -19,7 +19,7 @@
         <TextField fx:id="campoMedico" layoutX="150.0" layoutY="65.0" prefWidth="300.0" />
 
         <Label layoutX="50.0" layoutY="110.0" text="Paciente:" />
-        <TextField fx:id="campoPaciente" editable="false" layoutX="150.0" layoutY="105.0" prefWidth="300.0" />
+        <TextField fx:id="campoPaciente" layoutX="150.0" layoutY="105.0" prefWidth="300.0" />
 
         <Label layoutX="50.0" layoutY="150.0" text="Data:" />
         <TextField fx:id="campoData" layoutX="150.0" layoutY="145.0" prefWidth="150.0" promptText="dd/MM/yyyy" />
