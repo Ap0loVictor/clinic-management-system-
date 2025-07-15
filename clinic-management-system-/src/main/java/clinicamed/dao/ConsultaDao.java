@@ -115,10 +115,20 @@ public class ConsultaDao {
         }
         return consultas;
         }
-}
 
+    public static int contarConsultasPorData(Medico medico, String data) {
+        int contador = 0;
+        List<Consulta> consultas = carregarConsultas();
 
+        for (Consulta c : consultas) {
+            if (c.getNomeMedico().equals(medico.getNome()) && c.getData().equals(data) && !c.getStatus().equals("Lista de Espera")) {
+                contador++;
+            }
+        }
+
+        return contador;
     }
+
     public static void removerConsultaDoArq(Consulta consulta) {
         Path path = Paths.get("consultas.txt");
         try {

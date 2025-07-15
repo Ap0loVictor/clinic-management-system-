@@ -130,7 +130,7 @@ public class MinhasConsultasController extends Basecontroller implements Initial
         });
     }
 
-}
+
 
     @FXML
     public void handleCancelarConsulta() {
