@@ -4,6 +4,7 @@ import clinicamed.model.Consulta;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultaDao {
     private static final String CAMINHO_ARQ_CONSULTA = "consultas.txt";
@@ -44,6 +45,19 @@ public class ConsultaDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return consultas;
+    }
+    public static List<Consulta> buscarPorPaciente(String nomePaciente) {
+        List<Consulta> todas = carregarConsultas(); // carrega todas do JSON ou banco
+        List<Consulta> filtradas = new ArrayList<>();
+
+        for (Consulta c : todas) {
+            if (c.getNomePaciente().equalsIgnoreCase(nomePaciente)) {
+                filtradas.add(c);
+            }
+        }
+
+        return filtradas;
     }
 }
