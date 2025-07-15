@@ -1,4 +1,3 @@
-Apolo	AgoraSIm	23/02/2025	14:14	Concluída	O paciente estava com virose
 Apolo	Apolo	09/07/2022	09:00	Marcada	Virose
 Apolo	Adriano	10/10/2010	09:00	Marcada	Gripe
 Apolo	Tulio	20/10/2003	06:00	Marcada	Febre 
