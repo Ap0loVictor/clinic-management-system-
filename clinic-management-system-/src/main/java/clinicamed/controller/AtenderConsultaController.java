@@ -39,7 +39,7 @@ public class AtenderConsultaController {
             return;
         }
 
-        consulta.setDescricao(relatorio);
+        // consulta.setDescricao(relatorio);
         consulta.setStatus("Concluída");
         ConsultaDao.atualizarConsulta(consulta);
         ConsultaDao.promoverPacienteDaListaEspera(consulta.getNomeMedico(), consulta.getData());

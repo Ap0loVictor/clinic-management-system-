@@ -109,11 +109,18 @@ public class CadastrarConsultaController implements Initializable {
             .findFirst()
             .orElse(null);
 
+
+        // if (medicoSelecionado == null || ConsultaDao.contarConsultasPorData(medicoSelecionado, data) >= 3) {
+        //     mostrarAlerta("Este médico já está com a agenda cheia nesta data.");
+        //     return;
+        // }
+// Cuidado com o cara de baixo
         if (medicoSelecionado == null || ConsultaDao.contarConsultasPorData(medicoSelecionado, data) >= 3) {
             adicionarListaEspera(paciente.getNome(), nomeMedico, data, horario, "Em espera", descricao);
             mostrarAlerta("Você foi adicionado à lista de espera pois o médico já está com a agenda cheia nesta data.");
             return;
         }
+
 
         Consulta consulta = new Consulta(medicoSelecionado.getNome(), paciente.getNome(), data, horario, "Marcada", descricao);
         ConsultaDao.salvarConsulta(consulta);
@@ -139,6 +146,7 @@ public class CadastrarConsultaController implements Initializable {
     }
 
     @FXML
+
     public void handleVoltar() {
         Stage atual = (Stage) buttonVoltar.getScene().getWindow();
         Navegacao.trocarTela(atual, "/view/TelaPaciente.fxml", "Área do Paciente", controller -> {

@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 
 public class MedicoController extends Basecontroller implements Initializable {
@@ -52,7 +53,7 @@ public class MedicoController extends Basecontroller implements Initializable {
     }
 
     private void carregarConsultasMedico() {
-        ArrayList<Consulta> todasConsultas = ConsultaDao.carregarConsultas();
+        List<Consulta> todasConsultas = ConsultaDao.carregarConsultas();
         ObservableList<Consulta> consultasDoMedico = FXCollections.observableArrayList();
 
         System.out.println("Médico logado: " + medico.getNome());   
