@@ -10,3 +10,4 @@ Apolo Teste	1	55	Bradesco Saúde
 Adriano	2222	12	Não tenho
 Façanha	1919	50	Não tenho
 
+gaspar	123	13	Unimed
