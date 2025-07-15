@@ -85,10 +85,5 @@
          </children>
       </HBox>
 
-  <!-- <Button fx:id="buttonAtendido" layoutX="107.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="154.0" text="Atendido" /> 
-      
-      <Button fx:id="buttonSair" layoutX="344.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleSair" prefHeight="30.0" prefWidth="154.0" text="Sair" />
-      <Button fx:id="editarPerfil" layoutX="561.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleEditarPerfil" prefHeight="30.0" prefWidth="154.0" text="Editar Perfil" /> -->
-
    </children>
 </AnchorPane>

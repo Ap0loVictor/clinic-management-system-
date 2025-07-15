@@ -5,6 +5,7 @@ import clinicamed.dao.MedicoDao;
 import clinicamed.model.Consulta;
 import clinicamed.model.Medico;
 import clinicamed.model.Paciente;
+import clinicamed.utils.Navegacao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -69,10 +70,10 @@ public class CadastrarConsultaController implements Initializable {
             .findFirst()
             .orElse(null);
 
-        if (medicoSelecionado == null || ConsultaDao.contarConsultasPorData(medicoSelecionado, data) >= 3) {
-            mostrarAlerta("Este médico já está com a agenda cheia nesta data.");
-            return;
-        }
+        // if (medicoSelecionado == null || ConsultaDao.contarConsultasPorData(medicoSelecionado, data) >= 3) {
+        //     mostrarAlerta("Este médico já está com a agenda cheia nesta data.");
+        //     return;
+        // }
 
         Consulta consulta = new Consulta(medicoSelecionado.getNome(), paciente.getNome(), data, horario, "Marcada", descricao);
         ConsultaDao.salvarConsulta(consulta);
@@ -90,8 +91,10 @@ public class CadastrarConsultaController implements Initializable {
 
     @FXML
     private void handleVoltar() {
-        Stage stage = (Stage) buttonVoltar.getScene().getWindow();
-        stage.close();
+        Stage atual = (Stage) buttonVoltar.getScene().getWindow();
+        Navegacao.trocarTela(atual, "/view/TelaPaciente.fxml", "Área do Paciente", controller -> {
+            ((PacienteController) controller).setPaciente(paciente);
+        });
     }
 
     @Override
