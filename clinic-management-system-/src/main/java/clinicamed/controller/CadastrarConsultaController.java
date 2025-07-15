@@ -33,9 +33,15 @@ public class CadastrarConsultaController implements Initializable {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+
         campoPaciente.setText(paciente.getNome());
         campoPaciente.setEditable(false);
         carregarEspecialidades();
+
+        //nomePaciente = paciente.getNome();
+        //campoPaciente.setText(nomePaciente);
+        //campoPaciente.setEditable(false); 
+
     }
 
     private void carregarEspecialidades() {
@@ -79,7 +85,11 @@ public class CadastrarConsultaController implements Initializable {
 
         Consulta consulta = new Consulta(medicoSelecionado.getNome(), paciente.getNome(), data, horario, "Marcada", descricao);
         ConsultaDao.salvarConsulta(consulta);
+
         mostrarAlerta("Consulta marcada com sucesso!");
+
+        handleVoltar();
+
     }
 
     private void mostrarAlerta(String mensagem) {

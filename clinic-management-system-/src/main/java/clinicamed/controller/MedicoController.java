@@ -70,7 +70,7 @@ public class MedicoController extends Basecontroller implements Initializable {
         this.medico = medico;
         labelNome.setText(medico.getNome());
         labelNomeTitle.setText(medico.getNome());
-        labelEspecialidade.setText(medico.getEspecialdiade());
+        labelEspecialidade.setText(medico.getEspecialidade());
         labelPlanoSaude.setText(medico.getPlanoSaude());
 
         mostrarDados();
@@ -101,7 +101,7 @@ public class MedicoController extends Basecontroller implements Initializable {
     }
 
     public void mostrarEspecialidade() {
-        labelEspecialidade.setText(medico.getEspecialdiade());
+        labelEspecialidade.setText(medico.getEspecialidade());
     }
 
     public void mostrarPlanoSaude() {
