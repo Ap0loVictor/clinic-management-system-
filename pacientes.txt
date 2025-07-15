@@ -7,3 +7,5 @@ Novo pacienteP	123	12	true
 AgoraSIm	123	-1	true
 Apolo	123	12	Bradesco Saúde
 Apolo Teste	1	55	Bradesco Saúde
+Davi Jan Jan	123	19	Bradesco Saúde
+Pobre	321	22	Não tenho

@@ -7,3 +7,5 @@ Apolor	1234	Dentista	DosBons
 Teste1	1	teste	teste
 aaaaaaaaa	123	sim	sim
 AgoraSim	123	SaberMuito	DosBons
+JanJanJan	123	Cardiologista	Bradesco Saúde
+Paulo Henrique maligno	123	maldade	Bradesco Saúde

@@ -4,39 +4,46 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane prefHeight="500.0" prefWidth="850.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="clinicamed.controller.CadastrarConsultaController">
     <children>
 
         <Label layoutX="350.0" layoutY="14.0" text="Cadastrar Consulta">
-            <font>
-                <Font size="20.0" />
-            </font>
+            <font><Font size="20.0"/></font>
         </Label>
 
         <Label layoutX="261.0" layoutY="70.0" text="Especialidade:" />
-        <ComboBox fx:id="comboEspecialidades" layoutX="370.0" layoutY="66.0" prefWidth="250.0" onAction="#atualizarMedicos" />
+        <ComboBox fx:id="comboEspecialidades" layoutX="370.0" layoutY="66.0" prefWidth="250.0" onAction="#atualizarMedicos"/>
 
         <Label layoutX="261.0" layoutY="105.0" text="Médico:" />
-        <ComboBox fx:id="comboMedicos" layoutX="320.0" layoutY="101.0" prefWidth="300.0" />
+        <ComboBox fx:id="comboMedicos" layoutX="320.0" layoutY="101.0" prefWidth="300.0"/>
 
         <Label layoutX="257.0" layoutY="145.0" text="Paciente:" />
-        <TextField fx:id="campoPaciente" editable="false" layoutX="320.0" layoutY="141.0" prefWidth="300.0" />
+        <TextField fx:id="campoPaciente" editable="false" layoutX="320.0" layoutY="141.0" prefWidth="200.0"/>
+
+        <Label layoutX="530.0" layoutY="145.0" text="Meu Plano:" />
+        <ComboBox fx:id="comboPlano" layoutX="600.0" layoutY="141.0" prefWidth="120.0" onAction="#atualizarMedicos"/>
 
         <Label layoutX="257.0" layoutY="185.0" text="Data:" />
-        <TextField fx:id="campoData" layoutX="320.0" layoutY="181.0" prefWidth="150.0" promptText="dd/MM/yyyy" />
+        <TextField fx:id="campoData" layoutX="320.0" layoutY="181.0" prefWidth="150.0" promptText="dd/MM/yyyy"/>
 
         <Label layoutX="479.0" layoutY="185.0" text="Horário:" />
-        <TextField fx:id="campoHorario" layoutX="530.0" layoutY="181.0" prefHeight="27.0" prefWidth="89.0" promptText="HH:mm" />
+        <TextField fx:id="campoHorario" layoutX="530.0" layoutY="181.0" prefHeight="27.0" prefWidth="89.0" promptText="HH:mm"/>
 
         <Label layoutX="253.0" layoutY="225.0" text="Descrição:" />
-        <TextArea fx:id="campoDescricao" layoutX="320.0" layoutY="221.0" prefHeight="100.0" prefWidth="300.0" />
+        <TextArea fx:id="campoDescricao" layoutX="320.0" layoutY="221.0" prefHeight="100.0" prefWidth="300.0"/>
 
-        <Button fx:id="buttonSalvar" layoutX="320.0" layoutY="340.0" onAction="#handleSalvarConsulta"
-                prefHeight="29.0" prefWidth="300.0" text="Salvar Consulta" />
+        <Button fx:id="buttonSalvar" layoutX="320.0" layoutY="340.0"
+                onAction="#handleSalvarConsulta"
+                prefHeight="29.0" prefWidth="300.0"
+                text="Salvar Consulta"/>
 
-        <Button fx:id="buttonVoltar" layoutX="320.0" layoutY="380.0" onAction="#handleVoltar"
-                prefHeight="29.0" prefWidth="300.0" text="Voltar" />
+        <Button fx:id="buttonVoltar" layoutX="320.0" layoutY="380.0"
+                onAction="#handleVoltar"
+                prefHeight="29.0" prefWidth="300.0"
+                text="Voltar"/>
 
     </children>
 </AnchorPane>
