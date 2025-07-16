@@ -60,10 +60,8 @@ public class MedicoController extends Basecontroller implements Initializable {
     private void carregarConsultasMedico() {
         List<Consulta> todasConsultas = ConsultaDao.carregarConsultas();
         ObservableList<Consulta> consultasDoMedico = FXCollections.observableArrayList();
-
-        System.out.println("Médico logado: " + medico.getNome());   
+   
         for (Consulta c : todasConsultas) {
-            System.out.println("Consulta do médico: " + c.getNomeMedico());
             if (c.getNomeMedico().equalsIgnoreCase(medico.getNome())) {
                 consultasDoMedico.add(c);
             }

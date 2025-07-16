@@ -51,6 +51,10 @@ public class Consulta {
     public void setData(String dataStr) {
         this.data = LocalDate.parse(dataStr, DATE_FORMATTER);
     }
+    public void setDescricao(String descricao) {
+    this.descricao = descricao;
+    }
+
     public void setAvaliacao(int avaliacao) { this.avaliacao = avaliacao; }
     public void setComentarioAvaliacao(String comentario) { this.comentarioAvaliacao = comentario; }
     public String getAvaliacaoEstrelas() {

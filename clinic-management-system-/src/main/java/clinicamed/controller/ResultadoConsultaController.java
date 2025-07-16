@@ -16,22 +16,25 @@ public class ResultadoConsultaController {
     @FXML private Label labelPlano;
     @FXML private Label labelValor;
 
+    private static final DateTimeFormatter FORMATADOR_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     public void setDados(Consulta consulta, Paciente paciente) {
-    labelNomePaciente.setText(consulta.getNomePaciente());
-    labelNomeMedico.setText(consulta.getNomeMedico());
-    labelData.setText(consulta.getData().format(DateTimeFormatter.ISO_DATE_TIME));
+        labelNomePaciente.setText(consulta.getNomePaciente());
+        labelNomeMedico.setText(consulta.getNomeMedico());
 
-    double valorConsulta = 1600.0;
+        // ✅ Formatar data corretamente
+        labelData.setText(consulta.getData().format(FORMATADOR_DATA));
 
-    if (paciente.temPlano() && !paciente.getPlanoSaude().equalsIgnoreCase("Não tenho")) {
-        labelPlano.setText(paciente.getPlanoSaude());
-        labelValor.setText("R$ " + valorConsulta + ", mas o plano " + paciente.getPlanoSaude() + " cobriu os custos.");
-    } else {
-        labelPlano.setText("Não possui plano de saúde");
-        labelValor.setText("Valor total: R$ " + valorConsulta);
+        double valorConsulta = 1600.0;
+
+        if (paciente.temPlano() && !paciente.getPlanoSaude().equalsIgnoreCase("Não tenho")) {
+            labelPlano.setText(paciente.getPlanoSaude());
+            labelValor.setText("R$ " + valorConsulta + ", mas o plano " + paciente.getPlanoSaude() + " cobriu os custos.");
+        } else {
+            labelPlano.setText("Não possui plano de saúde");
+            labelValor.setText("Valor total: R$ " + valorConsulta);
+        }
     }
-}
-
 
     @FXML
     private void handleFechar() {

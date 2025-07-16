@@ -1,4 +1,3 @@
-// AtenderConsultaController.java
 package clinicamed.controller;
 
 import java.io.IOException;
@@ -39,8 +38,9 @@ public class AtenderConsultaController {
             return;
         }
 
-        // consulta.setDescricao(relatorio);
+        consulta.setDescricao(relatorio);
         consulta.setStatus("Concluída");
+
         ConsultaDao.atualizarConsulta(consulta);
         ConsultaDao.promoverPacienteDaListaEspera(consulta.getNomeMedico(), consulta.getData());
 
@@ -55,13 +55,15 @@ public class AtenderConsultaController {
             resultadoStage.setTitle("Resultado da Consulta");
             resultadoStage.setScene(new Scene(root));
             resultadoStage.show();
+
+            // ✅ Fecha a janela atual só depois de abrir a nova
+            Stage stage = (Stage) botaoFinalizar.getScene().getWindow();
+            stage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
+            mostrarAlerta("Erro ao carregar a tela de resultado: " + e.getMessage());
         }
-
-        
-        Stage stage = (Stage) botaoFinalizar.getScene().getWindow();
-        stage.close();
     }
 
     private void mostrarAlerta(String mensagem) {
