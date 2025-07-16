@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.BuscaMedicosController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.ConsultarMedicosController">
     <children>
         <!-- Título -->
         <Label layoutX="20.0" layoutY="20.0" text="Buscar Médicos" textFill="#1e88e5">

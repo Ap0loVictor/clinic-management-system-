@@ -47,7 +47,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="buttonMedicosDisponiveis" layoutX="90.0" layoutY="236.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Consultar médicos disponíveis" />
+      <Button fx:id="buttonMedicosDisponiveis" layoutX="90.0" layoutY="236.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Consultar médicos disponíveis"  onAction="#handleConsultarMedicos"/>
       <Button fx:id="buttonMinhasConsultas" layoutX="498.0" layoutY="235.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Minhas Consultas"  onAction="#handleMinhasConsultas"/>
       <Button fx:id="buttonMarcarConsulta" layoutX="90.0" layoutY="279.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="203.0" text="Marcar Consulta" onAction="#handleMarcarConsulta"  />
       <Button fx:id="buttonSair" layoutX="294.0" layoutY="344.0" mnemonicParsing="false"  prefHeight="27.0" prefWidth="203.0" text="Sair" onAction="#handleSair" />

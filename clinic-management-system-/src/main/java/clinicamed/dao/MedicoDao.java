@@ -13,10 +13,12 @@ public class MedicoDao {
 
     public static void salvarMedico(Medico medico) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_MEDICO, true))) {
+            // Formato: nome\tsenha\tespecialidade\tplanoSaude\tavaliacao
             String linha = medico.getNome() + "\t" +
                     medico.getSenha() + "\t" +
                     medico.getEspecialidade() + "\t" +
-                    medico.getPlanoSaude();
+                    medico.getPlanoSaude() + "\t" +
+                    medico.getAvaliacao();
             writer.write(linha);
             writer.newLine();
         } catch (IOException e) {
@@ -73,7 +75,19 @@ public class MedicoDao {
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split("\t");
                 if (dados.length >= 4) {
+                    // Usa a factory para manter compatibilidade
                     Medico medico = MedicoFactory.criarFromDao(dados);
+                    
+                    // Adiciona avaliação se existir (campo 5)
+                    if (dados.length >= 5) {
+                        try {
+                            double avaliacao = Double.parseDouble(dados[4]);
+                            medico.setAvaliacao(avaliacao);
+                        } catch (NumberFormatException e) {
+                            // Mantém o padrão 0.0 se não conseguir converter
+                        }
+                    }
+                    
                     medicos.add(medico);
                 }
             }
@@ -99,7 +113,8 @@ public class MedicoDao {
                 String linha = m.getNome() + "\t" +
                         m.getSenha() + "\t" +
                         m.getEspecialidade() + "\t" +
-                        m.getPlanoSaude();
+                        m.getPlanoSaude() + "\t" +
+                        m.getAvaliacao(); // Inclui a avaliação
                 writer.write(linha);
                 writer.newLine();
             }
@@ -111,5 +126,33 @@ public class MedicoDao {
     // Método antigo mantido por compatibilidade
     public static ArrayList<Medico> carregarMedico() {
         return carregarMedicos();
+    }
+    
+    // NOVO MÉTODO: Atualiza apenas a avaliação de um médico
+    public static void atualizarAvaliacaoMedico(String nomeMedico, double novaAvaliacao) {
+        ArrayList<Medico> medicos = carregarMedicos();
+        
+        for (Medico m : medicos) {
+            if (m.getNome().equals(nomeMedico)) {
+                // Atualiza a avaliação do médico
+                m.setAvaliacao(novaAvaliacao);
+                break;
+            }
+        }
+        
+        // Reescreve o arquivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CAMINHO_ARQ_MEDICO))) {
+            for (Medico m : medicos) {
+                String linha = m.getNome() + "\t" +
+                        m.getSenha() + "\t" +
+                        m.getEspecialidade() + "\t" +
+                        m.getPlanoSaude() + "\t" +
+                        m.getAvaliacao();
+                writer.write(linha);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

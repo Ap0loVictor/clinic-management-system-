@@ -3,12 +3,24 @@ package clinicamed.model;
 public class Medico extends Usuario {
     private String especialidade;
     private String planoSaude;
+    private double avaliacao;
     public Medico(String nome, String senha, String especialdiade, String planoSaude) {
         super(nome, senha);
         this.especialidade = especialdiade;
         this.planoSaude = planoSaude;
+        this.avaliacao = 0.0; // Valor padrão
     }
-
+     public double getAvaliacao() { return avaliacao; }
+    
+    public void setAvaliacao(double avaliacao) { this.avaliacao = avaliacao; }
+    public String getAvaliacaoString() {
+        return String.valueOf(avaliacao);
+    }
+    // Na classe Medico
+    public String getAvaliacaoEstrelas() {
+        int estrelas = (int) Math.round(avaliacao);
+        return "★".repeat(estrelas);
+    }
     @Override
     public void setSenha(String senha) {
         super.setSenha(senha);
