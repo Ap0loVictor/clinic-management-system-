@@ -28,8 +28,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MinhasConsultasController extends Basecontroller implements Initializable {
@@ -130,15 +133,17 @@ public class MinhasConsultasController extends Basecontroller implements Initial
         });
     }
 
-
-
     @FXML
     public void handleCancelarConsulta() {
         Consulta consultaSelecionada = consultas.getSelectionModel().getSelectedItem();
         if(consultaSelecionada != null) {
             consultas.getItems().remove(consultaSelecionada);
             ConsultaDao.removerConsultaDoArq(consultaSelecionada);
-            ConsultaDao.promoverPacienteDaListaEspera(consultaSelecionada.getNomeMedico(), consultaSelecionada.getData());
+            LocalDate dataString = consultaSelecionada.getData();
+            ConsultaDao.promoverPacienteDaListaEspera(
+                    consultaSelecionada.getNomeMedico(),
+                    dataString
+            );
             setPaciente(paciente);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
