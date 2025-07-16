@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.MinhasConsultasController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinicamed.controller.MinhasConsultasController">
    <children>
       <HBox layoutX="209.0" layoutY="14.0" prefHeight="41.0" prefWidth="594.0">
          <children>
@@ -31,34 +31,33 @@
             </Label>
          </children>
       </HBox>
-      
+
       <TableView fx:id="consultas" layoutX="6.0" layoutY="150.0" prefHeight="248.0" prefWidth="829.0">
-        <columns>
-          <TableColumn fx:id="nomeMedico" prefWidth="193.6" text="Médico" />
-          <TableColumn fx:id="data" prefWidth="105.8" text="Data" />
-          <TableColumn fx:id="horario" prefWidth="54.2" text="Horário" />
-          <TableColumn fx:id="status" prefWidth="72.5" text="Status" />
-          <TableColumn fx:id="avaliacao" prefWidth="100.0" text="Avaliação" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="nomeMedico" prefWidth="193.6" text="Médico" />
+            <TableColumn fx:id="data" prefWidth="105.8" text="Data" />
+            <TableColumn fx:id="horario" prefWidth="54.2" text="Horário" />
+            <TableColumn fx:id="status" prefWidth="72.5" text="Status" />
+            <TableColumn fx:id="avaliacao" prefWidth="100.0" text="Avaliação" />
+         </columns>
       </TableView>
 
-      
+
       <Label layoutX="271.0" layoutY="106.0" prefHeight="27.0" prefWidth="323.0" text="Histórico de Consultas">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
 
-      <HBox layoutX="250.0" layoutY="410.0" spacing="20.0" alignment="CENTER">
+      <HBox alignment="CENTER" layoutX="250.0" layoutY="410.0" spacing="20.0">
          <children>
-            <Button fx:id="botaoAvaliar" text="Avaliar Consulta" onAction="#handleAvaliar" prefWidth="150.0" disable="true" />
-            <Button fx:id="voltar" text="Voltar" onAction="#handleVoltar" prefWidth="100.0" />
+            <Button fx:id="botaoAvaliar" disable="true" onAction="#handleAvaliar" prefWidth="150.0" text="Avaliar Consulta" />
+            <Button fx:id="voltar" onAction="#handleVoltar" prefWidth="100.0" text="Voltar" />
          </children>
       </HBox>
 
 
-     <!-- <Button fx:id="voltar" layoutX="116.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleVoltar" prefHeight="27.0" prefWidth="279.0" text="Voltar" />
-    -->  <Button fx:id="cancelarConsulta" layoutX="487.0" layoutY="422.0" mnemonicParsing="false" onAction="#handleCancelarConsulta" prefHeight="26.0" prefWidth="279.0" text="Cancelar Consulta" />
+      <Button fx:id="cancelarConsulta" layoutX="539.0" layoutY="409.0" mnemonicParsing="false" onAction="#handleCancelarConsulta" prefHeight="27.0" prefWidth="150.0" text="Cancelar Consulta" />
 
    </children>
 </AnchorPane>

@@ -62,13 +62,13 @@
          </font>
       </Label>
       <TableView fx:id="tableConsultasMarcadas" layoutX="6.0" layoutY="192.0" prefHeight="248.0" prefWidth="829.0">
-        <columns>
-          <TableColumn fx:id="columnPaciente" prefWidth="193.60003662109375" text="Paciente" />
-          <TableColumn fx:id="columData" prefWidth="105.833984375" text="Data" />
+         <columns>
+            <TableColumn fx:id="columnPaciente" prefWidth="193.60003662109375" text="Paciente" />
+            <TableColumn fx:id="columData" prefWidth="105.833984375" text="Data" />
             <TableColumn fx:id="columnHorario" prefWidth="54.1671142578125" text="Horário" />
             <TableColumn fx:id="columnStatus" prefWidth="72.50054931640625" text="Status" />
             <TableColumn fx:id="columnVerDescricao" prefWidth="404.16949462890625" text="Ver Descrição" />
-        </columns>
+         </columns>
       </TableView>
       <Label layoutX="271.0" layoutY="148.0" prefHeight="27.0" prefWidth="323.0" text="Tabela de Consultas Marcadas">
          <font>
@@ -77,11 +77,11 @@
       </Label>
 
 
-      <HBox layoutX="154.0" layoutY="402.0" spacing="15.0" alignment="CENTER">
+      <HBox alignment="CENTER" layoutX="164.0" layoutY="450.0" prefHeight="35.0" prefWidth="448.0" spacing="15.0">
          <children>
-            <Button fx:id="botaoAtender" text="Atender" onAction="#handleAtenderConsulta" prefWidth="80.0" />
-            <Button fx:id="editarPerfil" text="Editar Perfil" onAction="#handleEditarPerfil" prefWidth="100.0" />
-            <Button fx:id="buttonSair" text="Sair" onAction="#handleSair" prefWidth="60.0" />
+            <Button fx:id="botaoAtender" onAction="#handleAtenderConsulta" prefWidth="80.0" text="Atender" />
+            <Button fx:id="editarPerfil" onAction="#handleEditarPerfil" prefWidth="100.0" text="Editar Perfil" />
+            <Button fx:id="buttonSair" onAction="#handleSair" prefHeight="83.0" prefWidth="248.0" text="Sair" />
          </children>
       </HBox>
 

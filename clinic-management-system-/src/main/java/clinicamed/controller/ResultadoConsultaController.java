@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.time.format.DateTimeFormatter;
+
 public class ResultadoConsultaController {
 
     @FXML private Label labelNomePaciente;
@@ -17,7 +19,7 @@ public class ResultadoConsultaController {
     public void setDados(Consulta consulta, Paciente paciente) {
     labelNomePaciente.setText(consulta.getNomePaciente());
     labelNomeMedico.setText(consulta.getNomeMedico());
-    labelData.setText(consulta.getData());
+    labelData.setText(consulta.getData().format(DateTimeFormatter.ISO_DATE_TIME));
 
     double valorConsulta = 1600.0;
 

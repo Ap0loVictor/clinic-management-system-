@@ -45,11 +45,16 @@ public class MedicoController extends Basecontroller implements Initializable {
     }
 
     private void configurarColunasTabela() {
-        columnPaciente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomePaciente()));
-        columData.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getData()));
-        columnHorario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHorario()));
-        columnStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
-        columnVerDescricao.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
+        columnPaciente.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNomePaciente()));
+        columData.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getData().toString()));
+        columnHorario.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHorario()));
+        columnStatus.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getStatus()));
+        columnVerDescricao.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getDescricao()));
     }
 
     private void carregarConsultasMedico() {
