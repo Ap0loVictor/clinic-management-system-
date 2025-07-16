@@ -216,13 +216,14 @@ public class CadastrarConsultaController implements Initializable {
             }
 
             Consulta consulta = new Consulta(
-                    nomeMedico,
-                    paciente.getNome(),
-                    data.format(formatterData),
-                    horario.format(formatterHora),
-                    "Marcada",
-                    descricao
+            paciente.getNome(),      
+            nomeMedico,              
+            data.format(formatterData),
+            horario.format(formatterHora),
+            "Marcada",
+            descricao
             );
+
 
             if (ConsultaDao.salvarConsulta(consulta)) {
                 mostrarAlerta("Sucesso", "Consulta marcada com sucesso para " +

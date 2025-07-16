@@ -13,12 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -60,26 +54,24 @@ public class MinhasConsultasController extends Basecontroller implements Initial
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Configurar colunas da tabela
-        nomeMedico.setCellValueFactory(new PropertyValueFactory<>("nomeMedico"));
-        data.setCellValueFactory(new PropertyValueFactory<>("data"));
-        horario.setCellValueFactory(new PropertyValueFactory<>("horario"));
-        status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        avaliacao.setCellValueFactory(new PropertyValueFactory<>("avaliacaoEstrelas"));
-        
-        // Listener para seleção na tabela
-        consultas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                // Habilitar botão apenas para consultas realizadas não avaliadas
-                boolean podeAvaliar = "Concluída".equals(newSelection.getStatus()) && 
-                                     newSelection.getAvaliacao() == 0;
-                botaoAvaliar.setDisable(!podeAvaliar);
-            } else {
-                botaoAvaliar.setDisable(true);
-            }
-        });
-    }
+public void initialize(URL url, ResourceBundle resourceBundle) {
+    nomeMedico.setCellValueFactory(new PropertyValueFactory<>("nomeMedico"));
+    data.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDataString()));
+    horario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+    status.setCellValueFactory(new PropertyValueFactory<>("status"));
+    avaliacao.setCellValueFactory(new PropertyValueFactory<>("avaliacaoEstrelas"));
+
+    consultas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if (newSelection != null) {
+            boolean podeAvaliar = "Concluída".equals(newSelection.getStatus()) &&
+                                   newSelection.getAvaliacao() == 0;
+            botaoAvaliar.setDisable(!podeAvaliar);
+        } else {
+            botaoAvaliar.setDisable(true);
+        }
+    });
+}
+
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
